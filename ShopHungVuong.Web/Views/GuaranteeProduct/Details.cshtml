@@ -1,0 +1,58 @@
+﻿@model ShopHungVuong.Web.Models.GuaranteeProductModelView
+
+@{
+	Layout = null;
+}
+<div class="modal-content" id="newConfModal">
+	<form id="myForm">
+		@Html.HiddenFor(m => m.Id)
+		<div class="form-group">
+			<p class="control-label col-md-4">Thời gian bảo hành</p>
+			<div class="col-md-8">
+				@Html.TextBoxFor(model => model.Time, new { @class = "form-control", @placeholder = "Thời gian bảo hành" })
+			</div>
+		</div>
+		<div class="form-group">
+			<p class="control-label col-md-4">Mô tả</p>
+			<div class="col-md-8">
+				@Html.TextBoxFor(model => model.Description, new { @class = "form-control", @placeholder = "Mô tả" })
+			</div>
+		</div>
+		<div class="form-group">
+			<p class="control-label col-md-4">Trạng thái</p>
+			<div class="col-md-8">
+				Kích hoạt &nbsp;&nbsp; @Html.CheckBoxFor(model => model.Status)
+			</div>
+		</div>
+		&nbsp;
+		<a href="#" id="btnSubmit" class="btn btn-success btn-block ">
+			@if (Model.Id > 0)
+			{
+				<span>Cập nhật</span>
+			}
+			else
+			{
+				<span>Lưu</span>
+			}
+		</a>
+	</form>
+</div>
+<script>
+	$(document).ready(function () {
+		$("#btnSubmit").click(function () {
+			$("#loaderDiv").show();
+			var myformdata = $("#myForm").serialize();
+			$.ajax({
+				type: "POST",
+				url: "/GuaranteeProduct/Index",
+				data: myformdata,
+				success: function () {
+					$("#loaderDiv").hide();
+					$("#myModal").modal("hide");
+					window.location.href = "/GuaranteeProduct/Index";
+				}
+			})
+		})
+	})
+</script>
+

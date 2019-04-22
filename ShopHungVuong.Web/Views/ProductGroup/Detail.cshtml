@@ -1,0 +1,40 @@
+﻿@model ShopHungVuong.Web.Models.ProductGroupModelView
+
+@{
+	Layout = null;
+}
+<div class="modal-content" id="newConfModal">
+	<form id="myForm">
+		@Html.HiddenFor(m => m.Id)
+		@Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Name" })
+		<br/>
+		<a href="#" id="btnSubmit" class="btn btn-success btn-block ">
+			@if (Model.Id > 0)
+			{
+				<span>Update</span>
+			}
+			else
+			{
+				<span>Save</span>
+			}
+		</a>
+	</form>
+</div>
+<script>
+	$(document).ready(function () {
+		$("#btnSubmit").click(function () {
+			$("#loaderDiv").show();
+			var myformdata = $("#myForm").serialize();
+			$.ajax({
+				type: "POST",
+				url: "/ProductGroup/Index",
+				data: myformdata,
+				success: function () {
+					$("#loaderDiv").hide();
+					$("#myModal").modal("hide");
+					window.location.href = "/ProductGroup/Index";
+				}
+			})
+		})
+	})
+</script>

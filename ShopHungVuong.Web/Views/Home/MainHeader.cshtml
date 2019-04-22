@@ -1,0 +1,164 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="header-section section">
+
+	<!-- Header Top Start -->
+	<div class="header-top header-top-one header-top-border pt-10 pb-10">
+		<div class="container">
+			<div class="row align-items-center justify-content-between">
+
+				<div class="col mt-10 mb-10">
+					<!-- Header Links Start -->
+					<div class="header-links">
+						<a href="@Url.Action("Cart","Cart")"><img src="~/assets/images/icons/car.png" alt="Car Icon"> <span>Kiểm tra đơn hàng</span></a>
+						<a href="@Url.Action("Contact","Home")"><img src="~/assets/images/icons/marker.png" alt="Car Icon"> <span>Danh sách cửa hàng</span></a>
+					</div><!-- Header Links End -->
+				</div>
+				<div class="col order-12 order-xs-12 order-lg-2 mt-10 mb-10">
+					<!-- Header Advance Search Start -->
+					<div class="header-advance-search">
+
+						<form action="#">
+							<div class="input"><input type="text" placeholder="Tìm kiếm sản phẩm"></div>
+							<div class="select">
+								<select class="nice-select">
+									<option>Tất cả sản phẩm</option>
+									<option value="tivi">Tivi</option>
+									<option value="tulanh">Tủ lạnh</option>
+									<option value="dieuhoa">Điều hòa</option>
+									<option value="maygiat">Máy giặt</option>
+									<option value="dodien">Đồ điện gia dụng</option>
+								</select>
+							</div>
+							<div class="submit"><button><i class="icofont icofont-search-alt-1"></i></button></div>
+						</form>
+
+					</div><!-- Header Advance Search End -->
+				</div>
+
+				<div class="col order-2 order-xs-2 order-lg-12 mt-10 mb-10">
+					<!-- Header Account Links Start -->
+					<div class="header-account-links">
+						<a href="@Url.Action("Registration", "Account")"><i class="icofont icofont-user-alt-7"></i> <span>Tài khoản</span></a>
+						<a href="@Url.Action("Login", "Account")"><i class="icofont icofont-login d-none"></i> <span>Đăng nhập</span></a>
+					</div><!-- Header Account Links End -->
+				</div>
+
+			</div>
+		</div>
+	</div><!-- Header Top End -->
+	<!-- Header Bottom Start -->
+	<div class="header-bottom header-bottom-one header-sticky">
+		<div class="container">
+			<div class="row align-items-center justify-content-between">
+				<div class="col mt-15 mb-15">
+					<!-- Logo Start -->
+					<div class="header-logo">
+						<a href="@Url.Action("Index", "Home")">
+							<img src="~/assets/images/logo-header.png" height="33" alt="HUNGVUONG - TRUNG TAM DIEN MAY">
+							<img class="theme-dark" src="~/assets/images/logo-alt.png" alt="HUNGVUONG - TRUNG TAM DIEN MAY">
+						</a>
+					</div><!-- Logo End -->
+				</div>
+
+				<div class="col order-12 order-lg-2 order-xl-2 d-none d-lg-block">
+					<!-- Main Menu Start -->
+					<div class="main-menu">
+						<nav>
+							<ul>
+								<li class="active"><a href="@Url.Action("Index", "Home")">TRANG CHỦ</a></li>
+								<li class="menu-item-has-children">
+									<a href="@Url.Action("Contact","Home")">Cửa hàng</a>
+									<ul class="sub-menu">
+										<li class="menu-item-has-children">
+											<a href="shop-grid.html">Điện tử</a>
+											<ul class="sub-menu">
+												<li><a href="shop-grid.html">Tivi</a></li>
+												<li><a href="shop-grid.html">Máy giặt</a></li>
+											</ul>
+										</li>
+										<li class="menu-item-has-children">
+											<a href="single-product.html">Điện lạnh</a>
+											<ul class="sub-menu">
+												<li><a href="single-product.html">Điều hòa</a></li>
+												<li><a href="single-product.html">Tủ lạnh</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="menu-item-has-children">
+									<a href="@Url.Action("AboutUs","Home")">Giới thiệu</a>
+									<ul class="sub-menu">
+										<li><a href="@Url.Action("AboutUs","Home")">Nhân viên</a></li>
+										<li><a href="@Url.Action("AboutUs","Home")">Dịch vụ</a></li>
+									</ul>
+								</li>
+								<li class="menu-item-has-children">
+									<a href="@Url.Action("Blog", "Home")">TIN TỨC</a>
+									<ul class="sub-menu">
+										<li><a href="@Url.Action("Blog", "Home")">Sửa tivi tại nhà</a></li>
+										<li><a href="@Url.Action("Blog", "Home")">Sửa tủ lạnh tại nhà</a></li>
+									</ul>
+								</li>
+								<li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
+							</ul>
+						</nav>
+					</div><!-- Main Menu End -->
+				</div>
+
+				<div class="col order-2 order-lg-12 order-xl-12">
+					<!-- Header Shop Links Start -->
+					<div class="header-shop-links">
+
+						<!-- Compare -->
+						@*<a href="compare.html" class="header-compare"><i class="ti-control-shuffle"></i></a>*@
+						<!-- Wishlist -->
+						<a href="wishlist.html" class="header-wishlist"><i class="ti-heart"></i> <span class="number">3</span></a>
+						<!-- Cart -->
+						<a href="cart.html" class="header-cart"><i class="ti-shopping-cart"></i> <span class="number">3</span></a>
+
+					</div><!-- Header Shop Links End -->
+				</div>
+
+				<!-- Mobile Menu -->
+				<div class="mobile-menu order-12 d-block d-lg-none col"></div>
+
+			</div>
+		</div>
+	</div><!-- Header Bottom End -->
+	<!-- Header Category Start -->
+	<div class="header-category-section">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+
+					<!-- Header Category -->
+					<div class="header-category">
+
+						<!-- Category Toggle Wrap -->
+						<div class="category-toggle-wrap d-block d-lg-none">
+							<!-- Category Toggle -->
+							<button class="category-toggle">Categories <i class="ti-menu"></i></button>
+						</div>
+
+						<!-- Category Menu -->
+						@*<nav class="category-menu">
+							<ul>
+								<li><a href="category-1.html">Tv & Audio System</a></li>
+								<li><a href="category-2.html">Computer & Laptop</a></li>
+								<li><a href="category-3.html">Phones & Tablets</a></li>
+								<li><a href="category-1.html">Home Appliances</a></li>
+								<li><a href="category-2.html">Kitchen appliances</a></li>
+								<li><a href="category-3.html">Accessories</a></li>
+							</ul>
+						</nav>*@
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div><!-- Header Category End -->
+</div>

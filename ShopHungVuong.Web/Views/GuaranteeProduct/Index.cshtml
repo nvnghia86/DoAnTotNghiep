@@ -1,0 +1,113 @@
+﻿@model ShopHungVuong.Web.Models.GuaranteeProductModelView
+
+@{
+	ViewBag.Title = "Chiến dịch bảo hành";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Chiến dịch bảo hành</h2>
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3 class="modal-title">Xóa chiến dịch bảo hành</h3>
+			</div>
+			<div class="modal-body">
+				<h4>Bạn có chắc chắn muốn xóa ? </h4>
+				<div style="text-align:center;display:none" id="loaderDiv">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-default" data-dismiss="modal">Thoát</a>
+				<a href="#" class="btn btn-success" onclick="Delete()">Xác nhận</a>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenId" />
+</div>
+<script>
+	var ConfirmDelete = function (Id) {
+		$("#hiddenId").val(Id);
+		$("#myModal").modal('show');
+	}
+	var Delete = function () {
+		$("#loaderDiv").show();
+		var confId = $("#hiddenId").val();
+		$.ajax({
+			type: "POST",
+			url: "/GuaranteeProduct/DeleteGuaranteeProduct",
+			data: { Id: confId },
+			success: function (result) {
+				$("#loaderDiv").hide();
+				$("#myModal").modal("hide");
+				$("#row_" + confId).remove();
+			}
+		})
+	}
+</script>
+
+<div class="container" style="width:60%;margin-top:2%">
+
+
+	<table class="table table-responsive">
+		<tr>
+			<th>Thời gian bảo hành</th>
+			<th>Mô tả</th>
+			<th>Trạng thái</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tbody>
+
+			@if (ViewBag.GuaranteeProductList != null)
+			{
+
+				foreach (var item in ViewBag.GuaranteeProductList)
+				{
+					<tr id="row_@item.Id">
+						<td>@item.Time</td>
+						<td>@item.Description</td>
+						<td>
+							@if(item.Status == true)
+							{
+								<p class="btn btn-success">Kích hoạt</p>
+							}
+							else
+							{
+								<p class="btn btn-danger">Khóa</p>
+							}
+						</td>
+						<td><a href="#" class="btn btn-success" onclick="AddEditGuaranteeProduct(@item.Id)"><i class="glyphicon glyphicon-pencil"></i> </a> </td>
+						<td><a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i> </a> </td>
+					</tr>
+
+				}
+			}
+		</tbody>
+	</table>
+	<a href="#" class="btn btn-primary" onclick="AddEditGuaranteeProduct(0)">New</a>
+
+
+	<div class="modal fade" id="myModal1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h3 class="modal-title"> Chiến dịch bảo hành</h3>
+				</div>
+				<div class="modal-body" id="myModalBodyDiv1">
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenEmployeeId" />
+</div>
+<script>
+	var AddEditGuaranteeProduct = function (Id) {
+		var url = "/GuaranteeProduct/AddEditGuaranteeProduct?Id=" + Id;
+		$("#myModalBodyDiv1").load(url, function () {
+			$("#myModal1").modal("show");
+		})
+	}
+</script>

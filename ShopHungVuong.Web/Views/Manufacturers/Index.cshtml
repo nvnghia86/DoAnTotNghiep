@@ -1,0 +1,102 @@
+﻿@model ShopHungVuong.Web.Models.ManufacturerModelView
+
+@{
+	ViewBag.Title = "Nhà sản xuất";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Nhà cung cấp</h2>
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3 class="modal-title">Delete Configuration</h3>
+			</div>
+			<div class="modal-body">
+				<h4>Are you sure ? You want to delete this. </h4>
+				<div style="text-align:center;display:none" id="loaderDiv">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+				<a href="#" class="btn btn-success" onclick="DeleteConfiguration()">Confirm</a>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenId" />
+</div>
+<script>
+	var ConfirmDelete = function (Id) {
+		$("#hiddenId").val(Id);
+		$("#myModal").modal('show');
+	}
+	var DeleteConfiguration = function () {
+		$("#loaderDiv").show();
+		var confId = $("#hiddenId").val();
+		$.ajax({
+			type: "POST",
+			url: "/Manufacturers/DeleteManufacturer",
+			data: { Id: confId },
+			success: function (result) {
+				$("#loaderDiv").hide();
+				$("#myModal").modal("hide");
+				$("#row_" + confId).remove();
+			}
+		})
+	}
+</script>
+
+<div class="container" style="width:40%;margin-top:2%">
+
+
+	<table class="table table-responsive">
+		<tr>
+			<th>Thương hiệu</th>
+			<th>Logo</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tbody>
+
+			@if (ViewBag.ManufacturerList != null)
+			{
+
+				foreach (var item in ViewBag.ManufacturerList)
+				{
+					<tr id="row_@item.Id">
+						<td>@item.Name</td>
+						<td><img src="/assets/images/manufacturer/@item.Logo" alt="Logo" height="20"/></td>
+						<td><a href="#" class="btn btn-success" onclick="AddEditConfiguration(@item.Id)"><i class="glyphicon glyphicon-pencil"></i> </a> </td>
+						<td><a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i> </a> </td>
+					</tr>
+
+				}
+			}
+		</tbody>
+	</table>
+	<a href="#" class="btn btn-primary" onclick="AddEditConfiguration(0)">New</a>
+
+
+	<div class="modal fade" id="myModal1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h3 class="modal-title"> Nhà cung cấp</h3>
+				</div>
+				<div class="modal-body" id="myModalBodyDiv1">
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenEmployeeId" />
+</div>
+<script>
+	var AddEditConfiguration = function (Id) {
+		var url = "/Manufacturers/AddEditManufacturer?Id=" + Id;
+		$("#myModalBodyDiv1").load(url, function () {
+			$("#myModal1").modal("show");
+		})
+	}
+</script>

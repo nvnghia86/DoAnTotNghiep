@@ -1,0 +1,102 @@
+﻿@model ShopHungVuong.Web.Models.ArticleGroupModelView
+
+@{
+	ViewBag.Title = "Nhà sản xuất";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Nhóm bài viết</h2>
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3 class="modal-title">Delete article group</h3>
+			</div>
+			<div class="modal-body">
+				<h4>Are you sure ? You want to delete this. </h4>
+				<div style="text-align:center;display:none" id="loaderDiv">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+				<a href="#" class="btn btn-success" onclick="Delete()">Confirm</a>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenId" />
+</div>
+<script>
+	var ConfirmDelete = function (Id) {
+		$("#hiddenId").val(Id);
+		$("#myModal").modal('show');
+	}
+	var Delete = function () {
+		$("#loaderDiv").show();
+		var confId = $("#hiddenId").val();
+		$.ajax({
+			type: "POST",
+			url: "/ArticleGroups/DeleteArticleGroup",
+			data: { Id: confId },
+			success: function (result) {
+				$("#loaderDiv").hide();
+				$("#myModal").modal("hide");
+				$("#row_" + confId).remove();
+			}
+		})
+	}
+</script>
+
+<div class="container" style="width:40%;margin-top:2%">
+
+
+	<table class="table table-responsive">
+		<tr>
+			<th>Tên nhóm</th>
+			<th>Mô tả</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tbody>
+
+			@if (ViewBag.ArticleGroupList != null)
+			{
+
+				foreach (var item in ViewBag.ArticleGroupList)
+				{
+					<tr id="row_@item.Id">
+						<td>@item.Name</td>
+						<td>@item.Description</td>
+						<td><a href="#" class="btn btn-success" onclick="AddEditArticleGroup(@item.Id)"><i class="glyphicon glyphicon-pencil"></i> </a> </td>
+						<td><a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i> </a> </td>
+					</tr>
+
+				}
+			}
+		</tbody>
+	</table>
+	<a href="#" class="btn btn-primary" onclick="AddEditArticleGroup(0)">New</a>
+
+
+	<div class="modal fade" id="myModal1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h3 class="modal-title">Nhóm tin tức</h3>
+				</div>
+				<div class="modal-body" id="myModalBodyDiv1">
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenEmployeeId" />
+</div>
+<script>
+	var AddEditArticleGroup = function (Id) {
+		var url = "/ArticleGroups/AddEditArticleGroup?Id=" + Id;
+		$("#myModalBodyDiv1").load(url, function () {
+			$("#myModal1").modal("show");
+		})
+	}
+</script>

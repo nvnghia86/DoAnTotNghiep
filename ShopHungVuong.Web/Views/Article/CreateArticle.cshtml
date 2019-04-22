@@ -1,0 +1,40 @@
+﻿@model ShopHungVuong.Web.Models.ArticleModelView
+
+@{
+	Layout = null;
+}
+
+<div class="modal-content" id="newConfModal">
+	<form id="myForm">
+		@Html.HiddenFor(m => m.ArticleId)
+		@Html.TextBoxFor(model => model.Title, new { @class = "form-control", @placeholder = "Tiêu đề" })
+		@Html.TextBoxFor(model => model.Author, new { @class = "form-control", @placeholder = "Tác giả" })
+		@Html.TextBoxFor(model => model.ArticleGroupId, new { @class = "form-control", @placeholder = "Nhóm bài" })
+		@Html.TextBoxFor(model => model.Photo, new { @class = "form-control", @placeholder = "Ảnh" })
+		@Html.TextBoxFor(model => model.Sumary, new { @class = "form-control", @placeholder = "Tóm lược" })
+		@Html.TextBoxFor(model => model.Detail, new { @class = "form-control", @placeholder = "Nội dung" })
+		@Html.TextBoxFor(model => model.PostDate, new { @class = "form-control", @placeholder = "Ngày đăng" })
+		<a href="#" id="btnSubmit" class="btn btn-success btn-block ">
+			<span>Save</span>
+		</a>
+	</form>
+</div>
+<script>
+	$(document).ready(function () {
+		$("#btnSubmit").click(function () {
+			$("#loaderDiv").show();
+			var myformdata = $("#myForm").serialize();
+			$.ajax({
+				type: "POST",
+				url: "/Article/Index",
+				data: myformdata,
+				success: function () {
+					$("#loaderDiv").hide();
+					$("#myModal").modal("hide");
+					window.location.href = "/Article/Index";
+				}
+			})
+		})
+	})
+</script>
+

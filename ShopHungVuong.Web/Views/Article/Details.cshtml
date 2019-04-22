@@ -1,0 +1,25 @@
+﻿@model DataAccess.Models.Article
+
+@{
+	Layout = null;
+}
+
+<div class="col-12 mb-50">
+	<div class="ee-single-blog">
+		<div class="image"><img src="~/assets/images/blog/@Model.Photo" alt="Blog Image"></div>
+		<div class="content">
+			<h3>@Model.Title</h3>
+			<ul class="meta">
+				<li><a href="#">@Model.Author</a></li>
+				<li><a href="#">@Model.PostDate.ToString("dd/MM/yyyy")</a></li>
+				<li><a href="#">Comments 05</a></li>
+			</ul>
+			@Html.Raw(Model.Detail)
+			<div class="blog-footer">
+				<div class="blog-tags"><h5>Tags:</h5> <a href="#">Electronic</a> <a href="#">Smartphone</a> <a href="#">Drone</a> <a href="#">Home Appliance</a></div>
+				<div class="blog-share"><h5>Share:</h5> <a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-google-plus"></i></a></div>
+			</div>
+
+		</div>
+	</div>
+</div>

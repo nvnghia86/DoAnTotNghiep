@@ -1,0 +1,100 @@
+﻿@model ShopHungVuong.Web.Models.ProductGroupModelView
+
+@{
+	ViewBag.Title = "Nhà sản xuất";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Nhóm sản phẩm</h2>
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3 class="modal-title">Xóa nhóm sản phẩm</h3>
+			</div>
+			<div class="modal-body">
+				<h4>Bạn có muốn xóa nhóm sản phẩm này </h4>
+				<div style="text-align:center;display:none" id="loaderDiv">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-default" data-dismiss="modal">Thoát</a>
+				<a href="#" class="btn btn-success" onclick="DeleteGroup()">Xác nhận</a>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenId" />
+</div>
+<script>
+	var ConfirmDelete = function (Id) {
+		$("#hiddenId").val(Id);
+		$("#myModal").modal('show');
+	}
+	var DeleteGroup = function () {
+		$("#loaderDiv").show();
+		var confId = $("#hiddenId").val();
+		$.ajax({
+			type: "POST",
+			url: "/ProductGroup/DeleteProductGroup",
+			data: { Id: confId },
+			success: function (result) {
+				$("#loaderDiv").hide();
+				$("#myModal").modal("hide");
+				$("#row_" + confId).remove();
+			}
+		})
+	}
+</script>
+
+<div class="container" style="width:40%;margin-top:2%">
+
+
+	<table class="table table-responsive">
+		<tr>
+			<th>Nhóm sản phẩm</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tbody>
+
+			@if (ViewBag.ProductGroupList != null)
+			{
+
+				foreach (var item in ViewBag.ProductGroupList)
+				{
+					<tr id="row_@item.Id">
+						<td>@item.Name</td>
+						<td><a href="#" class="btn btn-success" onclick="AddEditProductGroup(@item.Id)"><i class="glyphicon glyphicon-pencil"></i> </a> </td>
+						<td><a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i> </a> </td>
+					</tr>
+
+				}
+			}
+		</tbody>
+	</table>
+	<a href="#" class="btn btn-primary" onclick="AddEditProductGroup(0)">New</a>
+
+
+	<div class="modal fade" id="myModal1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h3 class="modal-title"> Nhóm sản phẩm</h3>
+				</div>
+				<div class="modal-body" id="myModalBodyDiv1">
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenEmployeeId" />
+</div>
+<script>
+	var AddEditProductGroup = function (Id) {
+		var url = "/ProductGroup/AddEditProductGroup?Id=" + Id;
+		$("#myModalBodyDiv1").load(url, function () {
+			$("#myModal1").modal("show");
+		})
+	}
+</script>

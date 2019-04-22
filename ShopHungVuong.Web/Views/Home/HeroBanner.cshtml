@@ -1,0 +1,49 @@
+﻿@model ShopHungVuong.Web.Models.ProductModelView
+@{
+	Layout = null;
+}
+
+<div class="hero-section section mb-30">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<!-- Hero Slider Start -->
+				<div class="hero-slider hero-slider-one">
+
+					<!-- Hero Item Start -->
+
+					@if (ViewBag.HeroBanner != null)
+					{
+						foreach (var item in ViewBag.HeroBanner)
+						{
+							<div class="hero-item">
+								<div class="row align-items-center justify-content-between">
+									<!-- Hero Content -->
+									<div class="hero-content col">
+
+										<h2>@item.PromotionName</h2>
+										<h4><span>@item.Name</span></h4>
+										<h1>ĐẾN <span class="big">@item.PromotionSaleOff %</span> OFF</h1>
+										<a href="@Url.Action("ProductDetail", "Products", new { @id = item.Id })">Mua ngay</a>
+
+									</div>
+
+									<!-- Hero Image -->
+									<div class="hero-image col">
+										<img src="~/assets/images/product/@item.MainPhoto1" width="264" height="447" alt="Hero Image">
+									</div>
+								</div>
+							</div><!-- Hero Item End -->
+						}
+					}
+
+
+
+
+
+				</div><!-- Hero Slider End -->
+
+			</div>
+		</div>
+	</div>
+</div>

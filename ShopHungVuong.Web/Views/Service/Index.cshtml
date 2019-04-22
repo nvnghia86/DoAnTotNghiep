@@ -1,0 +1,106 @@
+﻿@model ShopHungVuong.Web.Models.ServiceModelView
+
+@{
+	ViewBag.Title = "Dịch vụ";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Dịch vụ</h2>
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3 class="modal-title">Xóa dịch vụ</h3>
+			</div>
+			<div class="modal-body">
+				<h4>Bạn có chắc muốn xóa ? </h4>
+				<div style="text-align:center;display:none" id="loaderDiv">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-default" data-dismiss="modal">Thoát</a>
+				<a href="#" class="btn btn-success" onclick="DeleteService()">Xác nhận</a>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenId" />
+</div>
+<script>
+	var ConfirmDelete = function (Id) {
+		$("#hiddenId").val(Id);
+		$("#myModal").modal('show');
+	}
+	var DeleteService = function () {
+		$("#loaderDiv").show();
+		var confId = $("#hiddenId").val();
+		$.ajax({
+			type: "POST",
+			url: "/Service/DeleteService",
+			data: { Id: confId },
+			success: function (result) {
+				$("#loaderDiv").hide();
+				$("#myModal").modal("hide");
+				$("#row_" + confId).remove();
+			}
+		})
+	}
+</script>
+
+<div class="container" style="width:60%;margin-top:2%">
+
+
+	<table class="table table-responsive">
+		<tr>
+			<th>Tên dịch vụ</th>
+			<th>Mô tả</th>
+			<th>Giá tiền</th>
+			<th>Thời gian bảo hành</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tbody>
+
+			@if (ViewBag.ServiceList != null)
+			{
+
+				foreach (var item in ViewBag.ServiceList)
+				{
+			<tr id="row_@item.Id">
+				<td>@item.ServiceName</td>
+				<td>@item.Description</td>
+				<td>@item.Price</td>
+				<td>@item.WarrantyPeriod</td>
+				<td><a href="#" class="btn btn-success" onclick="AddEditService(@item.Id)"><i class="glyphicon glyphicon-pencil"></i> </a> </td>
+				<td><a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i> </a> </td>
+			</tr>
+
+				}
+			}
+		</tbody>
+	</table>
+	<a href="#" class="btn btn-primary" onclick="AddEditService(0)">New</a>
+
+
+	<div class="modal fade" id="myModal1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h3 class="modal-title">Dịch vụ sửa chữa tại nhà</h3>
+				</div>
+				<div class="modal-body" id="myModalBodyDiv1">
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenEmployeeId" />
+</div>
+<script>
+	var AddEditService = function (Id) {
+		var url = "/Service/AddEditService?Id=" + Id;
+		$("#myModalBodyDiv1").load(url, function () {
+			$("#myModal1").modal("show");
+		})
+	}
+</script>

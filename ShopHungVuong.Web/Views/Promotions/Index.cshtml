@@ -1,0 +1,102 @@
+﻿@model ShopHungVuong.Web.Models.PromotionModelView
+
+@{
+	ViewBag.Title = "Nhà sản xuất";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Chương trình khuyến mại</h2>
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3 class="modal-title">Xóa chương trình khuyến mại</h3>
+			</div>
+			<div class="modal-body">
+				<h4>Bạn có chắc muốn xóa</h4>
+				<div style="text-align:center;display:none" id="loaderDiv">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-default" data-dismiss="modal">Thoát</a>
+				<a href="#" class="btn btn-success" onclick="DeletePromotion()">Xác nhận</a>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenId" />
+</div>
+<script>
+	var ConfirmDelete = function (Id) {
+		$("#hiddenId").val(Id);
+		$("#myModal").modal('show');
+	}
+	var DeletePromotion = function () {
+		$("#loaderDiv").show();
+		var confId = $("#hiddenId").val();
+		$.ajax({
+			type: "POST",
+			url: "/Promotions/DeletePromotion",
+			data: { Id: confId },
+			success: function (result) {
+				$("#loaderDiv").hide();
+				$("#myModal").modal("hide");
+				$("#row_" + confId).remove();
+			}
+		})
+	}
+</script>
+
+<div class="container" style="width:40%;margin-top:2%">
+
+
+	<table class="table table-responsive">
+		<tr>
+			<th>Chương trình</th>
+			<th>Sale off</th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tbody>
+
+			@if (ViewBag.PromotionList != null)
+			{
+
+				foreach (var item in ViewBag.PromotionList)
+				{
+					<tr id="row_@item.Id">
+						<td>@item.Name</td>
+						<td>@item.SaleOff%</td>
+						<td><a href="#" class="btn btn-success" onclick="AddEditPromotion(@item.Id)"><i class="glyphicon glyphicon-pencil"></i> </a> </td>
+						<td><a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.Id)"><i class="glyphicon glyphicon-trash"></i> </a> </td>
+					</tr>
+
+				}
+			}
+		</tbody>
+	</table>
+	<a href="#" class="btn btn-primary" onclick="AddEditPromotion(0)">Thêm mới</a>
+
+
+	<div class="modal fade" id="myModal1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h3 class="modal-title">Chương trình khuyến mại</h3>
+				</div>
+				<div class="modal-body" id="myModalBodyDiv1">
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenEmployeeId" />
+</div>
+<script>
+	var AddEditPromotion = function (Id) {
+		var url = "/Promotions/AddEditPromotion?Id=" + Id;
+		$("#myModalBodyDiv1").load(url, function () {
+			$("#myModal1").modal("show");
+		})
+	}
+</script>

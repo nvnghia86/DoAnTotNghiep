@@ -1,0 +1,169 @@
+﻿@model DataAccess.Models.Product
+
+@{
+	ViewBag.Title = "Create";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+	<h4>Product</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.GuaranteeProduct.Description)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.GuaranteeProduct.Description)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Manufacturer.Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Manufacturer.Name)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.ProductGroup.Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.ProductGroup.Name)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Promotion.Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Promotion.Name)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Description)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Description)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.ImportPrice)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.ImportPrice)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Price)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Price)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Status)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Status)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.MainPhoto1)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.MainPhoto1)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.MainPhoto2)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.MainPhoto2)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.MainPhoto3)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.MainPhoto3)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.SecondaryPhoto1)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.SecondaryPhoto1)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.SecondaryPhoto2)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.SecondaryPhoto2)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.SecondaryPhoto3)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.SecondaryPhoto3)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.CreatedDate)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.CreatedDate)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Color)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Color)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Amount)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Amount)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Point)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Point)
+		</dd>
+
+	</dl>
+</div>
+<p>
+	@Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+	@Html.ActionLink("Back to List", "Index")
+</p>

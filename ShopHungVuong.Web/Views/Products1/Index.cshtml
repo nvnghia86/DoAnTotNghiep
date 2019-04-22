@@ -1,0 +1,130 @@
+﻿@model IEnumerable<DataAccess.Models.Product>
+@{
+	ViewBag.Title = "Tin tức";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/dataAdmin/dataTable/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/dataAdmin/skins/_all-skins.min.css" rel="stylesheet" />
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<div class="col-md-6">
+						<h3 class="box-title">Danh sách sản phẩm</h3>
+					</div>
+					<div class="col-md-6">
+						@Html.ActionLink("Thêm sản phẩm", "Create", "Products1", new { @class = "btn btn-success" })
+					</div>
+				</div>
+				<div class="box-body">
+					<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+						<div class="row">
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+									<thead>
+										<tr role="row">
+											<th style="width:60px">Ảnh</th>
+											<th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Tên sản phẩm: activate to sort column ascending" style="width: 300px;">Tên sản phẩm</th>
+											<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Hãn sản xuất: activate to sort column ascending" style="width: 100px;">Hãng sản xuất</th>
+											<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Số lượng còn: activate to sort column ascending" style="width: 100px;">Số lượng còn</th>
+											<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Loại sản phẩm: activate to sort column ascending" style="width: 50px;">Loại sản phẩm</th>
+											<td style="width: 65px;">Tùy chọn</td>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var item in Model)
+										{
+										<tr role="row" class="odd" id="row_@item.ProductId">
+											<td><img src="~/assets/images/product/@item.MainPhoto1" width="50px"/></td>
+											<td class="sorting">@item.Name</td>
+											<td>@item.Manufacturer.Name</td>
+											<td>@item.Amount</td>
+											<td>@item.ProductGroup.Name</td>
+											<td>
+												@Html.ActionLink("Sửa", "Edit", new { id = item.ProductId }, new { @class = "btn btn-success" })
+												<a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.ProductId)">Xóa </a>
+											</td>
+										</tr>
+										}
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+		</div>
+		<!-- /.col -->
+	</div>
+	<!-- /.row -->
+</section>
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3 class="modal-title">Xóa sản phẩm</h3>
+			</div>
+			<div class="modal-body">
+				<h4>Bạn có chắc muốn xóa sản phẩm này </h4>
+				<div style="text-align:center;display:none" id="loaderDiv">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-default" data-dismiss="modal">Thoát</a>
+				<a href="#" class="btn btn-success" onclick="DeleteProduct()">Xác nhận</a>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenId" />
+</div>
+
+<script>
+	var ConfirmDelete = function (Id) {
+		$("#hiddenId").val(Id);
+		$("#myModal").modal('show');
+	}
+	var DeleteProduct = function () {
+		$("#loaderDiv").show();
+		var productId = $("#hiddenId").val();
+		$.ajax({
+			type: "POST",
+			url: "/Products1/DeleteProduct",
+			data: { Id: productId },
+			success: function (result) {
+				$("#loaderDiv").hide();
+				$("#myModal").modal("hide");
+				$("#row_" + productId).remove();
+			}
+		})
+	}
+</script>
+
+
+<script src="~/dataAdmin/dataTable/jquery.dataTables.min.js"></script>
+<script src="~/dataAdmin/dataTable/dataTables.bootstrap.min.js"></script>
+<script src="~/dataAdmin/dataTable/demo.js"></script>
+<script src="~/dataAdmin/dataTable/fastclick.js"></script>
+<script src="~/dataAdmin/dataTable/jquery.slimscroll.min.js"></script>
+
+<script>
+		$(function () {
+			$('#example1').DataTable()
+			$('#example2').DataTable({
+				'paging': true,
+				'lengthChange': false,
+				'searching': false,
+				'ordering': true,
+				'info': true,
+				'autoWidth': false
+			})
+		})
+</script>

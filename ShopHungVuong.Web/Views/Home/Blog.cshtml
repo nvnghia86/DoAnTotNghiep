@@ -1,0 +1,108 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DataAccess.Models.Article>
+
+@{
+	ViewBag.Title = "Blog";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section">
+	<div class="page-banner-wrap row row-0 d-flex align-items-center ">
+
+		<!-- Page Banner -->
+		<div class="col-lg-4 col-12 order-lg-2 d-flex align-items-center justify-content-center">
+			<div class="page-banner">
+				<h1>Bài viết, tin tức</h1>
+				<p></p>
+				<div class="breadcrumb">
+					<ul>
+						<li><a href="~/Views/Home/Index.cshtml">Trang chủ</a></li>
+						<li><a href="">Tin tức</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Banner -->
+		<div class="col-lg-4 col-md-6 col-12 order-lg-1">
+			<div class="banner"><a href="#"><img src="~/images/banner/banner-15.jpg" alt="Banner"></a></div>
+		</div>
+
+		<!-- Banner -->
+		<div class="col-lg-4 col-md-6 col-12 order-lg-3">
+			<div class="banner"><a href="#"><img src="~/images/banner/banner-14.jpg" alt="Banner"></a></div>
+		</div>
+
+	</div>
+</div><!-- Page Banner Section End -->
+<!-- Blog Section Start -->
+<div class="blog-section section mt-90 mb-50">
+	<div class="container">
+		<div class="row row-40">
+
+			<div class="col-lg-8 col-12 order-1 order-lg-2 mb-40">
+
+				@Html.Action("ListArticle", "Article")
+				
+
+			</div>
+
+			<div class="col-lg-4 col-12 order-2 order-lg-1">
+
+				<!-- Blog Sidebar -->
+				<div class="blog-sidebar mb-40">
+
+					<h4 class="title">Chuyên mục</h4>
+
+					<ul>
+						<li><a href="#" id="tivi">Tivi</a></li>
+						<li><a href="#">Tủ lạnh</a></li>
+						<li><a href="#">Điều hòa</a></li>
+						<li><a href="#">Máy giặt</a></li>
+						<li><a href="#">Thiết bị điện lạnh</a></li>
+						<li><a href="#">Thiết bị điện tử</a></li>
+						<li><a href="#">Thiết bị điện nhà bếp</a></li>
+						<li><a href="#">Thủ thuật</a></li>
+						<li><a href="#">Mẹo hay</a></li>
+					</ul>
+
+				</div>
+
+				<!-- Blog Sidebar -->
+
+				@Html.Action("RecentPost", "Article")
+
+				<!-- Blog Sidebar -->
+				<div class="blog-sidebar mb-40">
+
+					<div class="banner"><a href="#"><img src="~/images/banner/banner-41.jpg" alt="Banner"></a></div>
+
+				</div>
+
+
+
+			</div>
+
+		</div>
+	</div>
+</div><!-- Blog Section End -->
+<!-- Brands Section Start -->
+<div class="brands-section section mb-90">
+	<div class="container">
+		<div class="row">
+
+			<!-- Brand Slider Start -->
+			<div class="brand-slider col">
+				<div class="brand-item col"><img src="~/images/brands/brand-1.png" alt="Brands"></div>
+				<div class="brand-item col"><img src="~/images/brands/brand-2.png" alt="Brands"></div>
+				<div class="brand-item col"><img src="~/images/brands/brand-3.png" alt="Brands"></div>
+				<div class="brand-item col"><img src="~/images/brands/brand-4.png" alt="Brands"></div>
+				<div class="brand-item col"><img src="~/images/brands/brand-5.png" alt="Brands"></div>
+			</div><!-- Brand Slider End -->
+
+		</div>
+	</div>
+</div><!-- Brands Section End -->

@@ -1,0 +1,28 @@
+﻿@model ShopHungVuong.Web.Models.ArticleModelView
+@{
+	Layout = null;
+}
+
+<div class="blog-sidebar mb-40">
+
+	<h4 class="title">Bài viết gần đây</h4>
+	@if (ViewBag.RecentPostList != null)
+	{
+		foreach (var item in ViewBag.RecentPostList)
+		{
+			<div class="sidebar-blog">
+				<a href="#" class="image"><img src="~/assets/images/blog/@item.Photo" alt="Sidebar Blog"></a>
+				<div class="content">
+					<h5><a href="#">@item.Title</a></h5>
+					<span>@item.PostDate.ToString("dd/MM/yyyy")</span>
+				</div>
+			</div>
+		}
+		<!-- Blog Sidebar -->
+
+	}
+	else
+	{
+		<p>Không có bài viết</p>
+	}
+</div>

@@ -1,0 +1,106 @@
+﻿@model ShopHungVuong.Models.RegistrationView
+
+@{
+	ViewBag.Title = "Registration";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Register Section Start -->
+<div class="register-section section mt-90 mb-90">
+	<div class="container">
+		<div class="row">
+
+			<!-- Register -->
+			<div class="col-md-6 col-12 d-flex">
+				<div class="ee-register">
+
+					<h3>We will need for your registration</h3>
+					<p>E&E provide how all this mistaken idea of denouncing pleasure and sing pain born an will give you a complete account of the system, and expound</p>
+					@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+					{
+						if (ViewBag.Message != null)
+						{
+							<div class="alert alert-success">
+								<strong>Success!</strong> @ViewBag.Message
+							</div>
+						}
+					}
+					else
+					{
+						using (Html.BeginForm())
+						{
+							@Html.AntiForgeryToken()
+							<div class="row">
+								@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+								<div class="col-12 mb-30">
+									@Html.EditorFor(m => m.Username, new { htmlAttributes = new { placeholder = "Your name here" } })
+									@Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+								</div>
+								<div class="col-12 mb-30">
+									@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { placeholder = "Your first name here" } })
+									@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+								</div>
+								<div class="col-12 mb-30">
+									@Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { placeholder = "Your last name here" } })
+									@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+								</div>
+								<div class="col-12 mb-30">
+									@Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Your email here" } })
+									@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+									@Html.ValidationMessage("ErrorEmail", new { @class = "text-danger" })
+								</div>
+								<div class="col-12 mb-30">
+									@Html.PasswordFor(model => model.Password, new { placeholder = "Enter passward" })
+									@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+								</div>
+								<div class="col-12 mb-30">
+									@Html.PasswordFor(model => model.ConfirmPassword, new { placeholder = "Conform password" })
+									@Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+								</div>
+								<div class="col-12"><input type="submit" value="register"></div>
+							</div>
+							if (ViewBag.Message != null)
+							{
+								<div class="alert alert-danger">
+									<strong>Error!</strong> @ViewBag.Message
+								</div>
+							}
+						}
+					}
+					<!-- Register Form -->
+
+				</div>
+			</div>
+
+			<div class="col-md-1 col-12 d-flex">
+
+				<div class="login-reg-vertical-boder"></div>
+
+			</div>
+
+			<!-- Account Image -->
+			<div class="col-md-5 col-12 d-flex">
+
+				<div class="ee-account-image">
+					<h3>Upload your Image</h3>
+
+					<img src="assets/images/account-image-placeholder.jpg" alt="Account Image Placeholder" class="image-placeholder">
+
+					<div class="account-image-upload">
+						<input type="file" name="chooseFile" id="account-image-upload">
+						<label class="account-image-label" for="account-image-upload">Choose your image</label>
+					</div>
+
+					<p>jpEG 250x250</p>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div><!-- Register Section End -->
+@section Scripts{
+	<script src="~/Scripts/jquery.validate.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

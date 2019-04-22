@@ -1,0 +1,44 @@
+﻿@model ShopHungVuong.Web.Models.ServiceModelView
+
+@{
+	Layout = null;
+}
+<div class="modal-content" id="newConfModal">
+	<form id="myForm">
+		@Html.HiddenFor(m => m.Id)
+		@Html.TextBoxFor(model => model.ServiceName, new { @class = "form-control", @placeholder = "Tên dịch vụ" })
+		@Html.TextBoxFor(model => model.Description, new { @class = "form-control", @placeholder = "Mô tả" })
+		@Html.TextBoxFor(model => model.Price, new { @class = "form-control", @placeholder = "Giá tiền" })
+		@Html.TextBoxFor(model => model.WarrantyPeriod, new { @class = "form-control", @placeholder = "Thời gian bảo hành" })
+		<a href="#" id="btnSubmit" class="btn btn-success btn-block ">
+			@if (Model.Id > 0)
+			{
+				<span>Update</span>
+			}
+			else
+			{
+				<span>Save</span>
+			}
+		</a>
+	</form>
+</div>
+<script>
+	$(document).ready(function () {
+		$("#btnSubmit").click(function () {
+			$("#loaderDiv").show();
+			var myformdata = $("#myForm").serialize();
+			$.ajax({
+				type: "POST",
+				url: "/Service/Index",
+				data: myformdata,
+				success: function () {
+					$("#loaderDiv").hide();
+					$("#myModal").modal("hide");
+					window.location.href = "/Service/Index";
+				}
+			})
+		})
+	})
+</script>
+
+

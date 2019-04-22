@@ -1,0 +1,223 @@
+﻿@model ShopHungVuong.Web.Models.ArticleModelView
+
+@{
+	ViewBag.Title = "Tin tức";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link href="~/dataAdmin/dataTable/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/dataAdmin/skins/_all-skins.min.css" rel="stylesheet" />
+
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header">
+					<div class="col-md-6">
+						<h3 class="box-title">Tin tức</h3>
+					</div>
+					<div class="col-md-6">
+						@Html.ActionLink("Thêm bài viết", "Create", "Article", new { @class = "btn btn-success" })
+					</div>
+					
+					
+				</div>
+				<div class="box-body">
+					<div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+						<div class="row">
+
+							@*<div class="col-sm-6">
+									<div class="dataTables_length" id="example1_length">
+										<label>
+											Show
+											<select name="example1_length" aria-controls="example1" class="form-control input-sm">
+												<option value="10">10</option>
+												<option value="25">25</option>
+												<option value="50">50</option>
+												<option value="100">100</option>
+											</select> entries
+										</label>
+										@Html.ActionLink("Thêm bài viết", "Create", "Article", new { @class = "btn btn-success" })
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div id="example1_filter" class="dataTables_filter">
+										<label>
+											Search:
+											<input type="search" class="form-control input-sm" placeholder="" aria-controls="example1">
+										</label>
+									</div>
+								</div>*@
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+									<thead>
+										<tr role="row">
+											<th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Tiêu đề: activate to sort column ascending" style="width: 300px;">Tiêu đề</th>
+											<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Tác giả: activate to sort column ascending" style="width: 100px;">Tác giả</th>
+											<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Ngày đăng: activate to sort column ascending" style="width: 100px;">Ngày đăng</th>
+											<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Nhóm tin: activate to sort column ascending" style="width: 50px;">Nhóm tin</th>
+											<th tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 65px;"></th>
+										</tr>
+									</thead>
+									<tbody>
+										@if (ViewBag.ArticleList != null)
+										{
+											foreach (var item in ViewBag.ArticleList)
+											{
+												<tr role="row" class="odd" id="row_@item.ArticleId">
+													<td class="sorting">@item.Title</td>
+													<td>@item.Author</td>
+													<td>@item.PostDate</td>
+													<td>@item.ArticleGroupName</td>
+													<td>
+														@Html.ActionLink("Sửa", "Edit", new { id = item.ArticleId }, new { @class = "btn btn-success" })
+														<a href="#" class="btn btn-danger" onclick="ConfirmDelete(@item.ArticleId)">Xóa </a>
+													</td>
+												</tr>
+											}
+										}
+									</tbody>
+									@*<tfoot>
+											<tr>
+												<th rowspan="1" colspan="1">Nhóm tin</th>
+												<th rowspan="1" colspan="1">Tác giả</th>
+												<th rowspan="1" colspan="1">Tiêu đề</th>
+												<th rowspan="1" colspan="1">Tóm lược</th>
+												<th rowspan="1" colspan="1">Nội dung</th>
+											</tr>
+										</tfoot>*@
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							@*<div class="col-sm-5">
+									<div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
+										Showing 1 to 10 of 57 entries
+									</div>
+								</div>*@
+							@*<div class="col-sm-7">
+									<div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+										<ul class="pagination">
+											<li class="paginate_button previous disabled" id="example1_previous">
+												<a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
+											</li>
+											<li class="paginate_button active">
+												<a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
+											</li>
+											<li class="paginate_button ">
+												<a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a>
+											</li>
+											<li class="paginate_button ">
+												<a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a>
+											</li>
+											<li class="paginate_button ">
+												<a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a>
+											</li>
+											<li class="paginate_button ">
+												<a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a>
+											</li>
+											<li class="paginate_button ">
+												<a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">6</a>
+											</li>
+											<li class="paginate_button next" id="example1_next">
+												<a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a>
+											</li>
+										</ul>
+									</div>
+								</div>*@
+						</div>
+					</div>
+				</div>
+				<!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+		</div>
+		<!-- /.col -->
+	</div>
+	<!-- /.row -->
+	@*<div class="modal fade modal-xl" id="myModal1">
+			<div class="modal-dialog modal-dialog-scrollable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<a href="#" class="close" data-dismiss="modal">&times;</a>
+						<h3 class="modal-title">Bài viết</h3>
+					</div>
+					<div class="modal-body" id="myModalBodyDiv1">
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="hiddenEmployeeId" />*@
+</section>
+@*<script>
+		var EditArticle = function (Id) {
+			var url = "/Article/EditArticle?Id=" + Id;
+			$("#myModalBodyDiv1").load(url, function () {
+				$("#myModal1").modal("show");
+			})
+		}
+	</script>*@
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3 class="modal-title">Xóa bài viết</h3>
+			</div>
+			<div class="modal-body">
+				<h4>Bạn có chắc muốn xóa bài viết này </h4>
+				<div style="text-align:center;display:none" id="loaderDiv">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+				<a href="#" class="btn btn-success" onclick="DeleteArticle()">Xác nhận</a>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenId" />
+</div>
+
+<script>
+	var ConfirmDelete = function (Id) {
+		$("#hiddenId").val(Id);
+		$("#myModal").modal('show');
+	}
+	var DeleteArticle = function () {
+		$("#loaderDiv").show();
+		var articleId = $("#hiddenId").val();
+		$.ajax({
+			type: "POST",
+			url: "/Article/Delete",
+			data: { Id: articleId },
+			success: function (result) {
+				$("#loaderDiv").hide();
+				$("#myModal").modal("hide");
+				$("#row_" + articleId).remove();
+			}
+		})
+	}
+</script>
+
+
+	<script src="~/dataAdmin/dataTable/jquery.dataTables.min.js"></script>
+	<script src="~/dataAdmin/dataTable/dataTables.bootstrap.min.js"></script>
+	<script src="~/dataAdmin/dataTable/demo.js"></script>
+	<script src="~/dataAdmin/dataTable/fastclick.js"></script>
+	<script src="~/dataAdmin/dataTable/jquery.slimscroll.min.js"></script>
+
+	<script>
+		$(function () {
+			$('#example1').DataTable()
+			$('#example2').DataTable({
+				'paging': true,
+				'lengthChange': false,
+				'searching': false,
+				'ordering': true,
+				'info': true,
+				'autoWidth': false
+			})
+		})
+	</script>

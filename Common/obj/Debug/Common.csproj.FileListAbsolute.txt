@@ -1,0 +1,6 @@
+D:\DoAnTotNghiep\Common\bin\Debug\Common.dll
+D:\DoAnTotNghiep\Common\bin\Debug\Common.pdb
+D:\DoAnTotNghiep\Common\obj\Debug\Common.csprojAssemblyReference.cache
+D:\DoAnTotNghiep\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+D:\DoAnTotNghiep\Common\obj\Debug\Common.dll
+D:\DoAnTotNghiep\Common\obj\Debug\Common.pdb
