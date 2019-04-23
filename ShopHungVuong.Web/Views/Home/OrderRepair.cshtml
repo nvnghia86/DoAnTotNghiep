@@ -1,0 +1,78 @@
+﻿@model ShopHungVuong.Web.Models.OrderRepairModelView
+@{
+	Layout = null;
+}
+<div class="popup-subscribe-section section bg-gray pt-55 pb-55" data-modal="popup-modal" id="myModal">
+
+	<!-- Popup Subscribe Wrap Start -->
+	<div class="popup-subscribe-wrap">
+		<button class="close-popup">X</button>
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+			<!-- Popup Subscribe Banner -->
+			<form id="myForm">
+				<div class="popup-subscribe-banner banner ">
+					<br />
+					<div class="col-12 mb-30">
+						@Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Họ tên" } })
+						@Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+					</div>
+					<div class="col-12 mb-20">
+						@Html.EditorFor(model => model.CustomerAddress, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Địa chỉ" } })
+						@Html.ValidationMessageFor(model => model.CustomerAddress, "", new { @class = "text-danger" })
+					</div>
+					<div class="col-12 mb-20">
+						@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Yêu cầu sửa chữa" } })
+						@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+					</div>
+					<div class="col-12 mb-20">
+						@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Số điện thoại" } })
+						@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+					</div>
+					<div class="col-12 mb-20">
+						Ngày sửa chữa: <input type="date" name="OrderDate" id="OrderDate" class="subscribe-form" value="" />
+					</div>
+				</div>
+
+				<!-- Popup Subscribe Form Wrap Start -->
+				<div class="popup-subscribe-form-wrap">
+
+					<h1>Đặt lịch <br>sửa chữa tại nhà</h1>
+					<!-- Newsletter Form -->
+					<label for="popup_subscribe" class="d-none">Đặt lịch sửa chữa</label>
+					<div class="col-12 mb-20">
+						@Html.EditorFor(m => m.CustomerEmail, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Số điện thoại" } })
+						@Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
+					</div>
+					<div class="col-12 mb-20">
+						@*<button type="submit" id="btnPost">Đặt lịch</button>*@
+						<a href="#" class="btn btn-success" id="btnSubmit">Đặt lịch</a>
+						@*<input type="submit" class="Button" style="border: 1px solid #d0d0d0;border-radius: 50px;" value="Đặt lịch">*@
+					</div>
+					<p>Nhân viên tư vấn dịch vụ sẽ liên hệ với quý khách để trao đổi, cám ơn quí khách</p>
+
+				</div><!-- Popup Subscribe Form Wrap End -->
+			</form>
+		}
+	</div><!-- Popup Subscribe Wrap End -->
+
+</div>
+@section script{
+	<script>
+		$(document).ready(function () {
+			$("#btnSubmit").click(function () {
+				var myformdata = $("#myForm").serialize();
+				$.ajax({
+					type: "POST",
+					url: "/Home/OrderRepair",
+					data: myformdata,
+					success: function () {
+						$("#myModal").modal("hide");
+						window.location.href = "/Home/OrderRepair";
+					}
+				})
+			})
+		})
+	</script>
+}

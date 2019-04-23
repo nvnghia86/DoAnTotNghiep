@@ -211,22 +211,52 @@ namespace ShopHungVuong.Web.Controllers
             return View();
         }
 
-        // POST: OrderRepairs/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //POST: OrderRepairs/Create
+        //To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult MainFooter([Bind(Include = "OrderRepairId,CustomerName,PhoneNumber,CustomerAddress,CustomerEmail,OrderDate,Content")] OrderRepair orderRepair)
+        public ActionResult OrderRepair()
         {
-            if (ModelState.IsValid)
-            {
-                db.OrderRepairs.Add(orderRepair);
-                db.SaveChanges();
-                return View();
-            }
-
             return View();
         }
+        [HttpPost]
+        public ActionResult OrderRepair(OrderRepairModelView model)
+        {
+            try
+            {
+                OrderRepair orderRepair = new OrderRepair
+                {
+                    Content = model.Content,
+                    CustomerAddress = model.CustomerAddress,
+                    CustomerEmail = model.CustomerEmail,
+                    CustomerName = model.CustomerName,
+                    OrderDate = model.OrderDate,
+                    OrderRepairId = model.OrderRepairId,
+                    PhoneNumber = model.PhoneNumber
+                };
+                db.OrderRepairs.Add(orderRepair);
+                db.SaveChanges();
+                return View(model);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+       
+        //[HttpPost]
+        //public JsonResult OrderRepair(OrderRepair orderRepairData)
+        //{
+        //    OrderRepair orderRepair = new OrderRepair
+        //    {
+        //        Content = orderRepairData.Content,
+        //        CustomerAddress = orderRepairData.CustomerAddress,
+        //        CustomerEmail = orderRepairData.CustomerEmail,
+        //        CustomerName = orderRepairData.CustomerName,
+        //        OrderDate = orderRepairData.OrderDate,
+        //        PhoneNumber = orderRepairData.PhoneNumber
+        //    };
+        //    return Json(String.Format("'Success': 'true'"));
+        //}
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -235,6 +265,7 @@ namespace ShopHungVuong.Web.Controllers
             }
             base.Dispose(disposing);
         }
+
     }
 
 }

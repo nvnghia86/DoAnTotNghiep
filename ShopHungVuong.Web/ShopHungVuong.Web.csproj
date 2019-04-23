@@ -165,6 +165,7 @@
     <Compile Include="Models\LoginView.cs" />
     <Compile Include="Models\ManufacturerModelView.cs" />
     <Compile Include="Models\OrderModelView.cs" />
+    <Compile Include="Models\OrderRepairModelView.cs" />
     <Compile Include="Models\ProductGroupModelView.cs" />
     <Compile Include="Models\ProductModelView.cs" />
     <Compile Include="Models\PromotionModelView.cs" />
@@ -3818,6 +3819,7 @@
     <Content Include="Views\OrderRepairs\Details.cshtml" />
     <Content Include="Views\OrderRepairs\Edit.cshtml" />
     <Content Include="Views\OrderRepairs\Index.cshtml" />
+    <Content Include="Views\Home\OrderRepair.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
