@@ -64,7 +64,6 @@ namespace ShopHungVuong.Web.Controllers
 
             if (Id > 0)
             {
-
                 Manufacturer manu = db.Manufacturers.SingleOrDefault(x => x.ManufacturerId == Id);
                 model.Id = manu.ManufacturerId;
                 model.Name = manu.Name;

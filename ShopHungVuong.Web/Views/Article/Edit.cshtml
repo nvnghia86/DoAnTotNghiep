@@ -66,44 +66,13 @@
 			@*@Html.LabelFor(model => model.Detail, htmlAttributes: new { @class = "control-label col-md-2" })*@
 			<label class="col-md-2">Nội dung</label>
 			<div class="col-md-10">
-				<div class="box box-info">
-					<div class="box-header">
-						<h3 class="box-title">
-							Nội dung vài viết
-							<small></small>
-						</h3>
-						<!-- tools box -->
-						<div class="pull-right box-tools">
-							<button type="button" class="btn btn-info btn-sm" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-								<i class="fa fa-minus"></i>
-							</button>
-							<button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove">
-								<i class="fa fa-times"></i>
-							</button>
-						</div>
-						<!-- /. tools -->
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body pad">
-						<form>
-							@*@Html.EditorFor(m => m.Detail, new { rows = "10", cols = "80", style = "visibility: hidden; display: none;" })*@
-							<textarea id="Detail" name="Detail" rows="10" cols="80" style="visibility: hidden; display: none;">
+				@Html.TextAreaFor(model => model.Detail, new { @id = "Detail", @class = "form-control ckeditor", @rows = "8" })
+				@Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
+				<script>
+					var detail = CKEDITOR.replace("Detail");
+					CKFinder.setupCKEditor(detail, '/ckfinder/');//Tích hợp CKFinder
+				</script>
 
-								</textarea>
-							<div id="cke_editor1" class="cke_1 cke cke_reset cke_chrome cke_editor_editor1 cke_ltr cke_browser_webkit" dir="ltr" lang="vi" role="application" aria-labelledby="cke_editor1_arialbl">
-								<span id="cke_editor1_arialbl" class="cke_voice_label">Bộ soạn thảo văn bản có định dạng, editor1</span>
-							</div>
-							<script>
-								$(function () {
-									CKEDITOR.replace('Detail', {
-										filebrowserBrowseUrl: '../../../assets/images/',
-										//filebrowserUploadUrl: '/ckfinder/connector?command=QuickUpload&type=Files'
-									});
-								})
-							</script>
-						</form>
-					</div>
-				</div>
 			</div>
 		</div>
 		<div class="form-group">

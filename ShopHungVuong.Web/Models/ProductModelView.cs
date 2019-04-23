@@ -19,6 +19,7 @@ namespace ShopHungVuong.Web.Models
         public string SecondaryPhoto1 { get; set; }
         public string SecondaryPhoto2 { get; set; }
         public string SecondaryPhoto3 { get; set; }
+        public DateTime CreatedDate { get; set; }
         public string Color { get; set; }
         public int Amount { get; set; }
         public int Point { get; set; }

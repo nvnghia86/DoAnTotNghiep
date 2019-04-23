@@ -10,7 +10,7 @@ namespace DataAccess.Models
 {
     public class Article
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), ScaffoldColumn(false)]
+        [Key]
         public int ArticleId { get; set; }
         public int ArticleGroupId { get; set; }
         public string Author { get; set; }
@@ -19,9 +19,9 @@ namespace DataAccess.Models
         public string Photo { get; set; }
         public string Detail { get; set; }
         public DateTime PostDate { get; set; }
-        public int? ViewCount { get; set; }
+        //public int? ViewCount { get; set; }
 
-        public string Tags { get; set; }
+        //public string Tags { get; set; }
         [ForeignKey("ArticleGroupId")]
         public virtual ArticleGroup ArticleGroup { get; set; }
         

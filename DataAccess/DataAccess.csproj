@@ -58,37 +58,17 @@
   <ItemGroup>
     <Compile Include="Dao\ArticleDao.cs" />
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\201904121531166_createDb.cs" />
-    <Compile Include="Migrations\201904121531166_createDb.Designer.cs">
-      <DependentUpon>201904121531166_createDb.cs</DependentUpon>
+    <Compile Include="Migrations\201904230338318_createDb.cs" />
+    <Compile Include="Migrations\201904230338318_createDb.Designer.cs">
+      <DependentUpon>201904230338318_createDb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904121758337_ub.cs" />
-    <Compile Include="Migrations\201904121758337_ub.Designer.cs">
-      <DependentUpon>201904121758337_ub.cs</DependentUpon>
+    <Compile Include="Migrations\201904230659188_232323.cs" />
+    <Compile Include="Migrations\201904230659188_232323.Designer.cs">
+      <DependentUpon>201904230659188_232323.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201904141817472_ubsdf.cs" />
-    <Compile Include="Migrations\201904141817472_ubsdf.Designer.cs">
-      <DependentUpon>201904141817472_ubsdf.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904141827318_ubsád.cs" />
-    <Compile Include="Migrations\201904141827318_ubsád.Designer.cs">
-      <DependentUpon>201904141827318_ubsád.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904141829595_ubs.cs" />
-    <Compile Include="Migrations\201904141829595_ubs.Designer.cs">
-      <DependentUpon>201904141829595_ubs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904150718272_asw.cs" />
-    <Compile Include="Migrations\201904150718272_asw.Designer.cs">
-      <DependentUpon>201904150718272_asw.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904150751297_asw33.cs" />
-    <Compile Include="Migrations\201904150751297_asw33.Designer.cs">
-      <DependentUpon>201904150751297_asw33.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904150755418_asw333.cs" />
-    <Compile Include="Migrations\201904150755418_asw333.Designer.cs">
-      <DependentUpon>201904150755418_asw333.cs</DependentUpon>
+    <Compile Include="Migrations\201904230710105_232.cs" />
+    <Compile Include="Migrations\201904230710105_232.Designer.cs">
+      <DependentUpon>201904230710105_232.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
@@ -118,32 +98,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904121531166_createDb.resx">
-      <DependentUpon>201904121531166_createDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904121758337_ub.resx">
-      <DependentUpon>201904121758337_ub.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904141817472_ubsdf.resx">
-      <DependentUpon>201904141817472_ubsdf.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904141827318_ubsád.resx">
-      <DependentUpon>201904141827318_ubsád.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904141829595_ubs.resx">
-      <DependentUpon>201904141829595_ubs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904150718272_asw.resx">
-      <DependentUpon>201904150718272_asw.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904150751297_asw33.resx">
-      <DependentUpon>201904150751297_asw33.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904150755418_asw333.resx">
-      <DependentUpon>201904150755418_asw333.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{387910ca-9db9-44b5-bf1b-1aca10be69bb}</Project>
       <Name>Common</Name>
@@ -151,6 +105,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201904230338318_createDb.resx">
+      <DependentUpon>201904230338318_createDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904230659188_232323.resx">
+      <DependentUpon>201904230659188_232323.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904230710105_232.resx">
+      <DependentUpon>201904230710105_232.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

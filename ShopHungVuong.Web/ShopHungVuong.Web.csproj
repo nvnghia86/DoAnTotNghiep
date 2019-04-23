@@ -173,10 +173,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\api\config.php" />
-    <Content Include="assets\api\tweet.php" />
-    <Content Include="assets\api\twitteroauth\OAuth.php" />
-    <Content Include="assets\api\twitteroauth\twitteroauth.php" />
     <Content Include="assets\ckeditor\adapters\jquery.js" />
     <Content Include="assets\ckeditor\CHANGES.html" />
     <Content Include="assets\ckeditor\ckeditor.asp" />
@@ -3803,7 +3799,7 @@
     <Content Include="Views\Products\CreateProduct.cshtml" />
     <Content Include="Views\Products1\Create.cshtml" />
     <Content Include="Views\Products1\Details.cshtml" />
-    <Content Include="Views\Products1\Edit.cshtml" />
+    <Content Include="Views\Products1\Edit2.cshtml" />
     <Content Include="Views\Products1\Index.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
@@ -3820,6 +3816,7 @@
     <Content Include="Views\OrderRepairs\Edit.cshtml" />
     <Content Include="Views\OrderRepairs\Index.cshtml" />
     <Content Include="Views\Home\OrderRepair.cshtml" />
+    <Content Include="Views\Products1\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

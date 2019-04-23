@@ -225,7 +225,8 @@ namespace ShopHungVuong.Web.Controllers
         // POST: News/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ArticleId,ArticleGroupId,Author,Title,Sumary,Photo,Detail,PostDate")] Article article)
         {
@@ -235,7 +236,7 @@ namespace ShopHungVuong.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ArticleGroupId = new SelectList(db.ArticleGroups, "ArticleGroupId", "Name", article.ArticleGroup);
+            ViewBag.ArticleGroupId = new SelectList(db.ArticleGroups, "ArticleGroupId", "Name", article.ArticleGroupId);
             return View(article);
         }
         public JsonResult Delete(int Id)

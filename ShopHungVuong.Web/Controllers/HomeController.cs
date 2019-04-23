@@ -219,7 +219,7 @@ namespace ShopHungVuong.Web.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult OrderRepair(OrderRepairModelView model)
+        public ActionResult MainHeader(OrderRepairModelView model)
         {
             try
             {
@@ -242,7 +242,11 @@ namespace ShopHungVuong.Web.Controllers
                 throw ex;
             }
         }
-       
+        public ActionResult AddOrderRepair()
+        {
+            ManufacturerModelView model = new ManufacturerModelView();
+            return PartialView("OrderRepair", model);
+        }
         //[HttpPost]
         //public JsonResult OrderRepair(OrderRepair orderRepairData)
         //{

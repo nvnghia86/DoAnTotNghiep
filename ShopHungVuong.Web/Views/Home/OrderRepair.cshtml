@@ -1,15 +1,16 @@
-﻿@model ShopHungVuong.Web.Models.OrderRepairModelView
+﻿
 @{
 	Layout = null;
 }
-<div class="popup-subscribe-section section bg-gray pt-55 pb-55" data-modal="popup-modal" id="myModal">
 
-	<!-- Popup Subscribe Wrap Start -->
-	<div class="popup-subscribe-wrap">
-		<button class="close-popup">X</button>
-		@using (Html.BeginForm())
-		{
-			@Html.AntiForgeryToken()
+	<div class="popup-subscribe-section section bg-gray pt-55 pb-55" >
+
+		<!-- Popup Subscribe Wrap Start -->
+		<div class="popup-subscribe-wrap">
+			<button class="close-popup">X</button>
+			@*@using (Html.BeginForm())
+				{
+					@Html.AntiForgeryToken()*@
 			<!-- Popup Subscribe Banner -->
 			<form id="myForm">
 				<div class="popup-subscribe-banner banner ">
@@ -54,11 +55,11 @@
 
 				</div><!-- Popup Subscribe Form Wrap End -->
 			</form>
-		}
-	</div><!-- Popup Subscribe Wrap End -->
+			@*}*@
+		</div><!-- Popup Subscribe Wrap End -->
 
-</div>
-@section script{
+	</div>
+
 	<script>
 		$(document).ready(function () {
 			$("#btnSubmit").click(function () {
@@ -75,4 +76,3 @@
 			})
 		})
 	</script>
-}

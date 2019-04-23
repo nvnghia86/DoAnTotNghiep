@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using DataAccess;
 using DataAccess.Models;
+using ShopHungVuong.Web.Models;
 
 namespace ShopHungVuong.Web.Controllers
 {
@@ -87,12 +88,11 @@ namespace ShopHungVuong.Web.Controllers
             return View(product);
         }
 
-        // POST: Products1/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //// POST: Products1/Edit/5
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductId,Name,Description,ImportPrice,Price,Status,MainPhoto1,MainPhoto2,MainPhoto3,SecondaryPhoto1,SecondaryPhoto2,SecondaryPhoto3,CreatedDate,Color,Amount,Point,ProductGroupId,GuaranteeProductId,PromotionId,ManufacturerId")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductId,ProductGroupId,ManufacturerId,Name,Description,ImportPrice,Price,Status,PromotionId,Amount,Point,GuaranteeProductId,MainPhoto1,MainPhoto2,MainPhoto3,SecondaryPhoto1,SecondaryPhoto2,SecondaryPhoto3,Color,CreatedDate")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -137,5 +137,36 @@ namespace ShopHungVuong.Web.Controllers
             }
             base.Dispose(disposing);
         }
+        //[HttpPost]
+        //public ActionResult Edit(ProductModelView model)
+        //{
+        //    Product product = db.Products.SingleOrDefault(x => x.ProductId == model.Id);
+        //    product.ProductId = model.Id;
+        //    product.Name = model.Name;
+        //    product.Description = model.Description;
+        //    product.ImportPrice = model.ImportPrice;
+        //    product.Price = model.Price;
+        //    product.Status = model.Status;
+        //    product.MainPhoto1 = model.MainPhoto1;
+        //    product.MainPhoto2 = model.MainPhoto2;
+        //    product.MainPhoto3 = model.MainPhoto3;
+        //    product.SecondaryPhoto1 = model.SecondaryPhoto1;
+        //    product.SecondaryPhoto2 = model.SecondaryPhoto2;
+        //    product.SecondaryPhoto3 = model.SecondaryPhoto3;
+        //    product.Color = model.Color;
+        //    product.Amount = model.Amount;
+        //    product.Point = model.Point;
+        //    product.ProductGroupId = model.ProductGroupId;
+        //    product.ProductGroup.Name = model.ProductGroupName;
+        //    product.GuaranteeProductId = model.GuaranteeProductId;
+        //    product.GuaranteeProduct.Time = model.GuaranteeProductTime;
+        //    product.PromotionId = model.PromotionId;
+        //    product.Promotion.Name = model.PromotionName;
+        //    product.Promotion.SaleOff = model.PromotionSaleOff;
+        //    product.ManufacturerId = model.ManufacturerId;
+        //    product.Manufacturer.Name = model.ManufacturerName;
+        //    db.SaveChanges();
+        //    return Redirect("Index");
+        //}
     }
 }
