@@ -13,12 +13,16 @@ namespace ShopHungVuong.Web.Controllers
     {
         public DataContext db = new DataContext();
         // GET: ProductGroup
-            public ActionResult Index()
+        public ActionResult Index()
+        {
+            if (Session["userID"] == null)
             {
-                List<ProductGroupModelView> listManu = db.ProductGroups.Select(x => new ProductGroupModelView { Id = x.ProductGroupId, Name = x.Name }).ToList();
-                ViewBag.ProductGroupList = listManu;
-                return View();
+                return RedirectToAction("Login", "Home");
             }
+            List<ProductGroupModelView> listManu = db.ProductGroups.Select(x => new ProductGroupModelView { Id = x.ProductGroupId, Name = x.Name }).ToList();
+            ViewBag.ProductGroupList = listManu;
+            return View();
+        }
 
         [HttpPost]
         public ActionResult Index(ProductGroupModelView model)

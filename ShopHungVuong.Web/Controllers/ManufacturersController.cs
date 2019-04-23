@@ -17,6 +17,10 @@ namespace ShopHungVuong.Web.Controllers
 
         public ActionResult Index()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             List<ManufacturerModelView> listManu = db.Manufacturers.Select(x => new ManufacturerModelView { Id = x.ManufacturerId, Name = x.Name, Logo = x.Logo }).ToList();
             ViewBag.ManufacturerList = listManu;
             return View();

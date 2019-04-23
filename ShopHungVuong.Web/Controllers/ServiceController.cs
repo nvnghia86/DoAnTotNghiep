@@ -15,6 +15,10 @@ namespace ShopHungVuong.Web.Controllers
 
         public ActionResult Index()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             List<ServiceModelView> listService = db.Services.Select(x => new ServiceModelView { Id = x.ServicerId, ServiceName = x.ServiceName, Description = x.Description, Price = x.Price, WarrantyPeriod = x.WarrantyPeriod }).ToList();
             ViewBag.ServiceList = listService;
             return View();

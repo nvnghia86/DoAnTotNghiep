@@ -138,7 +138,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\ArticleGroupsController.cs" />
@@ -685,6 +684,7 @@
     <Content Include="assets\images\Manufacturer\Sanyo.png" />
     <Content Include="assets\images\Manufacturer\Sony.png" />
     <Content Include="assets\images\Manufacturer\Toshiba.png" />
+    <Content Include="assets\images\noimage.jpg" />
     <Content Include="assets\images\payment-support.png" />
     <Content Include="assets\images\product\banner.jpg" />
     <Content Include="assets\images\product\dieuhoa-1.jpg" />
@@ -3740,6 +3740,11 @@
     <Content Include="Scripts\vietnamlocalselector.js" />
     <Content Include="Scripts\vietnamlocalselector.min.js" />
     <Content Include="Scripts\vietnamlocalselector.nonoop.js" />
+    <Content Include="Views\Admin\Account.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Article\Create.cshtml" />
+    <Content Include="Views\Article\Edit.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3749,10 +3754,8 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Account\ActivationAccount.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Registration.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\Blogcomment.cshtml" />
@@ -3779,9 +3782,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Manufacturers\Index.cshtml" />
-    <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\ArticleGroups\Index.cshtml" />
-    <Content Include="Views\Article\Create.cshtml" />
     <Content Include="Views\ArticleGroups\Partial2.cshtml" />
     <Content Include="Views\Manufacturers\Details.cshtml" />
     <Content Include="Views\ProductGroup\Detail.cshtml" />
@@ -3795,7 +3796,6 @@
     <Content Include="Views\Service\Index.cshtml" />
     <Content Include="Views\Article\RecentPost.cshtml" />
     <Content Include="Views\Products\RelatedProduct.cshtml" />
-    <Content Include="Views\Article\Edit.cshtml" />
     <Content Include="Views\Products\CreateProduct.cshtml" />
     <Content Include="Views\Products1\Create.cshtml" />
     <Content Include="Views\Products1\Details.cshtml" />
@@ -3807,7 +3807,6 @@
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Article\ListArticle.cshtml" />
-    <Content Include="Views\Article\Details.cshtml" />
     <Content Include="Views\Home\HeroBanner.cshtml" />
     <Content Include="Views\Products\MiniCart.cshtml" />
     <Content Include="Views\OrderRepairs\Create.cshtml" />

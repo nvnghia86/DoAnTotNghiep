@@ -19,6 +19,10 @@ namespace ShopHungVuong.Web.Controllers
         // GET: Products1
         public ActionResult Index()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             var products = db.Products.Include(p => p.GuaranteeProduct).Include(p => p.Manufacturer).Include(p => p.ProductGroup).Include(p => p.Promotion);
             return View(products.ToList());
         }
@@ -137,36 +141,5 @@ namespace ShopHungVuong.Web.Controllers
             }
             base.Dispose(disposing);
         }
-        //[HttpPost]
-        //public ActionResult Edit(ProductModelView model)
-        //{
-        //    Product product = db.Products.SingleOrDefault(x => x.ProductId == model.Id);
-        //    product.ProductId = model.Id;
-        //    product.Name = model.Name;
-        //    product.Description = model.Description;
-        //    product.ImportPrice = model.ImportPrice;
-        //    product.Price = model.Price;
-        //    product.Status = model.Status;
-        //    product.MainPhoto1 = model.MainPhoto1;
-        //    product.MainPhoto2 = model.MainPhoto2;
-        //    product.MainPhoto3 = model.MainPhoto3;
-        //    product.SecondaryPhoto1 = model.SecondaryPhoto1;
-        //    product.SecondaryPhoto2 = model.SecondaryPhoto2;
-        //    product.SecondaryPhoto3 = model.SecondaryPhoto3;
-        //    product.Color = model.Color;
-        //    product.Amount = model.Amount;
-        //    product.Point = model.Point;
-        //    product.ProductGroupId = model.ProductGroupId;
-        //    product.ProductGroup.Name = model.ProductGroupName;
-        //    product.GuaranteeProductId = model.GuaranteeProductId;
-        //    product.GuaranteeProduct.Time = model.GuaranteeProductTime;
-        //    product.PromotionId = model.PromotionId;
-        //    product.Promotion.Name = model.PromotionName;
-        //    product.Promotion.SaleOff = model.PromotionSaleOff;
-        //    product.ManufacturerId = model.ManufacturerId;
-        //    product.Manufacturer.Name = model.ManufacturerName;
-        //    db.SaveChanges();
-        //    return Redirect("Index");
-        //}
     }
 }

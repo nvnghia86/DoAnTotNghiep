@@ -261,6 +261,53 @@ namespace ShopHungVuong.Web.Controllers
         //    };
         //    return Json(String.Format("'Success': 'true'"));
         //}
+
+       
+        [HttpPost]
+        public ActionResult Login(User userModel)
+        {
+            using (db)
+            {
+                var userDetails = db.Users.Where(x => x.Username == userModel.Username && x.Password == userModel.Password && x.IsActive == true).FirstOrDefault();
+
+                if (userDetails == null)
+                {
+                    ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng.");
+                    return View();
+                }
+                else if(userDetails.IsActive == false)
+                {
+                    ModelState.AddModelError("", "Tài khoản đang bị khóa ");
+                    return View();
+                }
+                else
+                {
+                    Session["userID"] = userDetails.UserId;
+                    Session["userName"] = userDetails.Username;
+                    Session["firsName"] = userDetails.FirstName;
+                    Session["lastName"] = userDetails.LastName;
+                    Session["address"] = userDetails.Address;
+                    Session["role"] = userDetails.RoleId;
+                    if (userDetails.Avatar == null)
+                    {
+                        Session["avatar"] = "/Assets/Images/noimage.JPG";
+                    }
+                    else
+                    {
+                        Session["avatar"] = userDetails.Avatar;
+                    }
+                    Session["email"] = userDetails.Email;
+                    if(userDetails.RoleId == 3)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
+                }
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

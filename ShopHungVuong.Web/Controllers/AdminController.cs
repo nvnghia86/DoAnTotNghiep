@@ -9,11 +9,30 @@ namespace ShopHungVuong.Web.Controllers
 {
     public class AdminController : Controller
     {
+        DataContext db = new DataContext();
         // GET: Admin
         public ActionResult Index()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Backend");
+            }
             return View();
         }
-
+        public ActionResult LogOut()
+        {
+            int userId = (int)Session["userID"];
+            Session.Abandon();
+            return RedirectToAction("Login", "Home");
+        }
+        public ActionResult Account()
+        {
+            User user = db.Users.Find(Session["userID"]);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
     }
 }

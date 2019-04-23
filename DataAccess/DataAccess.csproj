@@ -58,17 +58,9 @@
   <ItemGroup>
     <Compile Include="Dao\ArticleDao.cs" />
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\201904230338318_createDb.cs" />
-    <Compile Include="Migrations\201904230338318_createDb.Designer.cs">
-      <DependentUpon>201904230338318_createDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904230659188_232323.cs" />
-    <Compile Include="Migrations\201904230659188_232323.Designer.cs">
-      <DependentUpon>201904230659188_232323.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904230710105_232.cs" />
-    <Compile Include="Migrations\201904230710105_232.Designer.cs">
-      <DependentUpon>201904230710105_232.cs</DependentUpon>
+    <Compile Include="Migrations\201904231438313_createDb.cs" />
+    <Compile Include="Migrations\201904231438313_createDb.Designer.cs">
+      <DependentUpon>201904231438313_createDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
@@ -107,14 +99,8 @@
     <Content Include="Content\PagedList.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904230338318_createDb.resx">
-      <DependentUpon>201904230338318_createDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904230659188_232323.resx">
-      <DependentUpon>201904230659188_232323.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904230710105_232.resx">
-      <DependentUpon>201904230710105_232.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904231438313_createDb.resx">
+      <DependentUpon>201904231438313_createDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

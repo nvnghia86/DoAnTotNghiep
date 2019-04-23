@@ -12,7 +12,7 @@
 				<!-- Login -->
 			<div class="col-md-6 col-12 d-flex">
 				<div class="ee-login">
-					@using (Html.BeginForm(null, null, new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+					@using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
 					{
 						@Html.AntiForgeryToken()
 						<h3>Login to your account</h3>

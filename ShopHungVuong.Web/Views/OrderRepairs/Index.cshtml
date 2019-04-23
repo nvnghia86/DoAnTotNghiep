@@ -1,34 +1,32 @@
 ﻿@model IEnumerable<DataAccess.Models.OrderRepair>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý đặt lịch";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Danh sách đặt lịch</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerName)
+            Khách hàng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            Số điện thoại
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerAddress)
+            Địa chỉ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CustomerEmail)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OrderDate)
+            Ngày yêu cầu sửa chữa
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Content)
+            Nội dung yêu cầu
         </th>
         <th></th>
     </tr>

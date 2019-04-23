@@ -15,6 +15,10 @@ namespace ShopHungVuong.Web.Controllers
 
         public ActionResult Index()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             List<GuaranteeProductModelView> listManu = db.GuaranteeProducts.Select(x => new GuaranteeProductModelView { Id = x.GuaranteeProductId, Time = x.Time, Description = x.Description, Status = x.Status }).ToList();
             ViewBag.GuaranteeProductList = listManu;
             return View();

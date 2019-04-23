@@ -17,6 +17,10 @@ namespace ShopHungVuong.Web.Controllers
 
         public ActionResult Index()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             List<ArticleGroupModelView> listManu = db.ArticleGroups.Select(x => new ArticleGroupModelView { Id = x.ArticleGroupId, Name = x.Name, Description = x.Description }).ToList();
             ViewBag.ArticleGroupList = listManu;
             return View();

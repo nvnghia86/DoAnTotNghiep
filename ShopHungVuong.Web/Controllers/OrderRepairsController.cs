@@ -18,6 +18,10 @@ namespace ShopHungVuong.Web.Controllers
         // GET: OrderRepairs
         public ActionResult Index()
         {
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View(db.OrderRepairs.ToList());
         }
 
@@ -35,31 +39,7 @@ namespace ShopHungVuong.Web.Controllers
             }
             return View(orderRepair);
         }
-
-        // GET: OrderRepairs/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: OrderRepairs/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrderRepairId,CustomerName,PhoneNumber,CustomerAddress,CustomerEmail,OrderDate,Content")] OrderRepair orderRepair)
-        {
-            if (ModelState.IsValid)
-            {
-                db.OrderRepairs.Add(orderRepair);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(orderRepair);
-        }
-
-        // GET: OrderRepairs/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,10 +53,7 @@ namespace ShopHungVuong.Web.Controllers
             }
             return View(orderRepair);
         }
-
-        // POST: OrderRepairs/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "OrderRepairId,CustomerName,PhoneNumber,CustomerAddress,CustomerEmail,OrderDate,Content")] OrderRepair orderRepair)

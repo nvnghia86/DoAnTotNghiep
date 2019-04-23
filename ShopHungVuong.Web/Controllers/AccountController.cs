@@ -19,10 +19,7 @@ namespace ShopHungVuong.Web.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        public ActionResult Login1()
-        {
-            return View();
-        }
+        
 
         //[HttpGet]
         //public ActionResult Login(string path)
