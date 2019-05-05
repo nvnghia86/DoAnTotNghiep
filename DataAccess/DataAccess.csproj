@@ -62,6 +62,22 @@
     <Compile Include="Migrations\201904231438313_createDb.Designer.cs">
       <DependentUpon>201904231438313_createDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904240207249_update.cs" />
+    <Compile Include="Migrations\201904240207249_update.Designer.cs">
+      <DependentUpon>201904240207249_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905040759163_as.cs" />
+    <Compile Include="Migrations\201905040759163_as.Designer.cs">
+      <DependentUpon>201905040759163_as.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905040809269_tr.cs" />
+    <Compile Include="Migrations\201905040809269_tr.Designer.cs">
+      <DependentUpon>201905040809269_tr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905051404362_trzzz.cs" />
+    <Compile Include="Migrations\201905051404362_trzzz.Designer.cs">
+      <DependentUpon>201905051404362_trzzz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleGroup.cs" />
@@ -101,6 +117,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201904231438313_createDb.resx">
       <DependentUpon>201904231438313_createDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904240207249_update.resx">
+      <DependentUpon>201904240207249_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905040759163_as.resx">
+      <DependentUpon>201905040759163_as.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905040809269_tr.resx">
+      <DependentUpon>201905040809269_tr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905051404362_trzzz.resx">
+      <DependentUpon>201905051404362_trzzz.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

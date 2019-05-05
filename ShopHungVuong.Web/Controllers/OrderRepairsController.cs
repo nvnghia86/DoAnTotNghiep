@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using DataAccess;
@@ -14,7 +16,7 @@ namespace ShopHungVuong.Web.Controllers
     public class OrderRepairsController : Controller
     {
         private DataContext db = new DataContext();
-
+        
         // GET: OrderRepairs
         public ActionResult Index()
         {
@@ -66,31 +68,14 @@ namespace ShopHungVuong.Web.Controllers
             }
             return View(orderRepair);
         }
-
-        // GET: OrderRepairs/Delete/5
-        public ActionResult Delete(int? id)
+        [HttpPost]
+        public JsonResult Delete(int Id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            OrderRepair orderRepair = db.OrderRepairs.Find(id);
-            if (orderRepair == null)
-            {
-                return HttpNotFound();
-            }
-            return View(orderRepair);
-        }
-
-        // POST: OrderRepairs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            OrderRepair orderRepair = db.OrderRepairs.Find(id);
-            db.OrderRepairs.Remove(orderRepair);
+            bool result = false;
+            OrderRepair item = db.OrderRepairs.Find(Id);
+            db.OrderRepairs.Remove(item);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

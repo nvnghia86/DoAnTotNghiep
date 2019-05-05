@@ -28,13 +28,32 @@ namespace ShopHungVuong.Web.Controllers
             ViewBag.ArticleList = listArticle;
             return View();
         }
-
-        public ActionResult ListArticle(int? page)
+        public ActionResult ArticleTulanh()
         {
-            if (Session["userID"] == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
+            List<ArticleModelView> listArticle = db.Articles.Select(x => new ArticleModelView { ArticleId = x.ArticleId, ArticleGroupId = x.ArticleGroupId, Author = x.Author, Detail = x.Detail, Photo = x.Photo, PostDate = x.PostDate, Sumary = x.Sumary, Title = x.Title, ArticleGroupName = x.ArticleGroup.Name }).Where(x =>x.ArticleGroupId == 2).ToList();
+            ViewBag.ArticleList = listArticle;
+            return View();
+        }
+        public ActionResult ArticleDieuhoa()
+        {
+            List<ArticleModelView> listArticle = db.Articles.Select(x => new ArticleModelView { ArticleId = x.ArticleId, ArticleGroupId = x.ArticleGroupId, Author = x.Author, Detail = x.Detail, Photo = x.Photo, PostDate = x.PostDate, Sumary = x.Sumary, Title = x.Title, ArticleGroupName = x.ArticleGroup.Name }).Where(x => x.ArticleGroupId == 5).ToList();
+            ViewBag.ArticleList = listArticle;
+            return View();
+        }
+        public ActionResult ArticleMaygiat()
+        {
+            List<ArticleModelView> listArticle = db.Articles.Select(x => new ArticleModelView { ArticleId = x.ArticleId, ArticleGroupId = x.ArticleGroupId, Author = x.Author, Detail = x.Detail, Photo = x.Photo, PostDate = x.PostDate, Sumary = x.Sumary, Title = x.Title, ArticleGroupName = x.ArticleGroup.Name }).Where(x => x.ArticleGroupId == 6).ToList();
+            ViewBag.ArticleList = listArticle;
+            return View();
+        }
+        public ActionResult ArticleTivi()
+        {
+            List<ArticleModelView> listArticle = db.Articles.Select(x => new ArticleModelView { ArticleId = x.ArticleId, ArticleGroupId = x.ArticleGroupId, Author = x.Author, Detail = x.Detail, Photo = x.Photo, PostDate = x.PostDate, Sumary = x.Sumary, Title = x.Title, ArticleGroupName = x.ArticleGroup.Name }).Where(x => x.ArticleGroupId == 1).ToList();
+            ViewBag.ArticleList = listArticle;
+            return View();
+        }
+        public ActionResult ListArticle()
+        {
             List<ArticleModelView> listArticle = db.Articles.Select(x => new ArticleModelView { ArticleId = x.ArticleId, ArticleGroupId = x.ArticleGroupId, Author = x.Author, Detail = x.Detail, Photo = x.Photo, PostDate = x.PostDate, Sumary = x.Sumary, Title = x.Title, ArticleGroupName = x.ArticleGroup.Name }).OrderByDescending(x => x.PostDate).ToList();
             ViewBag.ArticleList = listArticle;
             return View();

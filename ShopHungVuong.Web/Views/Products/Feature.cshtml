@@ -19,11 +19,10 @@
 					<!-- Product Tab List -->
 					<ul class="nav product-tab-list">
 						<li><a class="active" data-toggle="tab" href="#tab-one" id="">all</a></li>
-						<li><a data-toggle="tab" href="#tab-one">TIVI</a></li>
-						<li><a data-toggle="tab" href="#tab-two">TỦ LẠNH</a></li>
-						<li><a data-toggle="tab" href="#tab-three">ĐIỀU HÒA</a></li>
-						<li><a data-toggle="tab" href="#tab-four">MÁY GIẶT</a></li>
-						<li><a data-toggle="tab" href="#tab-five">ÂM THANH</a></li>
+						<li><a data-toggle="tab" href="#tab-two">TIVI</a></li>
+						<li><a data-toggle="tab" href="#tab-three">TỦ LẠNH</a></li>
+						<li><a data-toggle="tab" href="#tab-four">ĐIỀU HÒA</a></li>
+						<li><a data-toggle="tab" href="#tab-five">MÁY GIẶT</a></li>
 					</ul>
 				</div>
 			</div><!-- Product Tab Filter End -->
@@ -103,253 +102,29 @@
 					<div class="tab-pane fade" id="tab-two">
 
 						<!-- Product Slider Wrap Start -->
-						<div class="product-slider-wrap product-slider-arrow-one">
-							<!-- Product Slider Start -->
-							<div class="product-slider product-slider-4">
-								@if (ViewBag.ProductList != null)
-								{
-
-									foreach (var item in ViewBag.ProductList)
-									{
-										<div class="col pb-20 pt-10">
-											<!-- Product Start -->
-											<div class="ee-product">
-
-												<!-- Image -->
-												<div class="image">
-
-													<a href="@Url.Action("ProductDetail","Products", new { @id = item.Id})" class="img"><img src="~/assets/images/product/product-1.png" alt="Product Image"></a>
-
-													<div class="wishlist-compare">
-														<a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
-														<a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
-													</div>
-
-													<a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
-
-												</div>
-
-												<!-- Content -->
-												<div class="content">
-
-													<!-- Category & Title -->
-													<div class="category-title">
-
-														<a href="#" class="cat">@item.ProductGroupName</a>
-														<h5 class="title"><a href="@Url.Action("ProductDetail","Products", new { @id = item.Id})">@item.Name</a></h5>
-
-													</div>
-
-													<!-- Price & Ratting -->
-													<div class="price-ratting">
-
-														<h5 class="price">@item.Price VND</h5>
-														<div class="ratting">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-half-o"></i>
-														</div>
-													</div>
-
-												</div>
-
-											</div><!-- Product End -->
-										</div>
-									}
-								}
-							</div><!-- Product Slider End -->
-						</div><!-- Product Slider Wrap End -->
+						@Html.Action("FeatureTivi","Products")
+						<!-- Product Slider Wrap End -->
 
 					</div>
 					<div class="tab-pane fade" id="tab-three">
 
 						<!-- Product Slider Wrap Start -->
-						<div class="product-slider-wrap product-slider-arrow-one">
-							<!-- Product Slider Start -->
-							<div class="product-slider product-slider-4">
-								@if (ViewBag.ProductList != null)
-								{
-
-									foreach (var item in ViewBag.ProductList)
-									{
-										<div class="col pb-20 pt-10">
-											<!-- Product Start -->
-											<div class="ee-product">
-
-												<!-- Image -->
-												<div class="image">
-
-													<a href="@Url.Action("ProductDetail","Products", new { @id = item.Id})" class="img"><img src="~/assets/images/product/product-1.png" alt="Product Image"></a>
-
-													<div class="wishlist-compare">
-														<a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
-														<a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
-													</div>
-
-													<a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
-
-												</div>
-
-												<!-- Content -->
-												<div class="content">
-
-													<!-- Category & Title -->
-													<div class="category-title">
-
-														<a href="#" class="cat">@item.ProductGroupName</a>
-														<h5 class="title"><a href="@Url.Action("ProductDetail","Products", new { @id = item.Id})">@item.Name</a></h5>
-
-													</div>
-
-													<!-- Price & Ratting -->
-													<div class="price-ratting">
-
-														<h5 class="price">@item.Price VND</h5>
-														<div class="ratting">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-half-o"></i>
-														</div>
-													</div>
-
-												</div>
-
-											</div><!-- Product End -->
-										</div>
-									}
-								}
-							</div><!-- Product Slider End -->
-						</div><!-- Product Slider Wrap End -->
+						@Html.Action("FeatureTulanh", "Products")
+						<!-- Product Slider Wrap End -->
 
 					</div>
 					<div class="tab-pane fade" id="tab-four">
 
 						<!-- Product Slider Wrap Start -->
-						<div class="product-slider-wrap product-slider-arrow-one">
-							<!-- Product Slider Start -->
-							<div class="product-slider product-slider-4">
-								@if (ViewBag.ProductList != null)
-								{
-
-									foreach (var item in ViewBag.ProductList)
-									{
-										<div class="col pb-20 pt-10">
-											<!-- Product Start -->
-											<div class="ee-product">
-
-												<!-- Image -->
-												<div class="image">
-
-													<a href="@Url.Action("ProductDetail","Products", new { @id = item.Id})" class="img"><img src="~/assets/images/product/product-1.png" alt="Product Image"></a>
-
-													<div class="wishlist-compare">
-														<a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
-														<a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
-													</div>
-
-													<a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
-
-												</div>
-
-												<!-- Content -->
-												<div class="content">
-
-													<!-- Category & Title -->
-													<div class="category-title">
-
-														<a href="#" class="cat">@item.ProductGroupName</a>
-														<h5 class="title"><a href="@Url.Action("ProductDetail","Products", new { @id = item.Id})">@item.Name</a></h5>
-
-													</div>
-
-													<!-- Price & Ratting -->
-													<div class="price-ratting">
-
-														<h5 class="price">@item.Price VND</h5>
-														<div class="ratting">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-half-o"></i>
-														</div>
-													</div>
-
-												</div>
-
-											</div><!-- Product End -->
-										</div>
-									}
-								}
-							</div><!-- Product Slider End -->
-						</div><!-- Product Slider Wrap End -->
+						@Html.Action("FeatureDieuhoa", "Products")
+						<!-- Product Slider Wrap End -->
 
 					</div>
 					<div class="tab-pane fade" id="tab-five">
 
 						<!-- Product Slider Wrap Start -->
-						<div class="product-slider-wrap product-slider-arrow-one">
-							<!-- Product Slider Start -->
-							<div class="product-slider product-slider-4">
-								@if (ViewBag.ProductList != null)
-								{
-
-									foreach (var item in ViewBag.ProductList)
-									{
-										<div class="col pb-20 pt-10">
-											<!-- Product Start -->
-											<div class="ee-product">
-
-												<!-- Image -->
-												<div class="image">
-
-													<a href="@Url.Action("ProductDetail","Products", new { @id = item.Id})" class="img"><img src="~/assets/images/product/product-1.png" alt="Product Image"></a>
-
-													<div class="wishlist-compare">
-														<a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
-														<a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
-													</div>
-
-													<a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
-
-												</div>
-
-												<!-- Content -->
-												<div class="content">
-
-													<!-- Category & Title -->
-													<div class="category-title">
-
-														<a href="#" class="cat">@item.ProductGroupName</a>
-														<h5 class="title"><a href="@Url.Action("ProductDetail","Products", new { @id = item.Id})">@item.Name</a></h5>
-
-													</div>
-
-													<!-- Price & Ratting -->
-													<div class="price-ratting">
-
-														<h5 class="price">@item.Price VND</h5>
-														<div class="ratting">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-half-o"></i>
-														</div>
-													</div>
-
-												</div>
-
-											</div><!-- Product End -->
-										</div>
-									}
-								}
-							</div><!-- Product Slider End -->
-						</div><!-- Product Slider Wrap End -->
+						@Html.Action("FeatureMaygiat", "Products")
+					<!-- Product Slider Wrap End -->
 
 					</div><!-- Tab Pane End -->
 

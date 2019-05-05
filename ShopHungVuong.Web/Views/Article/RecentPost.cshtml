@@ -11,9 +11,9 @@
 		foreach (var item in ViewBag.RecentPostList)
 		{
 			<div class="sidebar-blog">
-				<a href="#" class="image"><img src="~/assets/images/blog/@item.Photo" alt="Sidebar Blog"></a>
+				<a href="@Url.Action("Blogcomment", "Home", new { @id = item.ArticleId })" class="image"><img src="~/assets/images/article/@item.Photo" alt="Sidebar Blog"></a>
 				<div class="content">
-					<h5><a href="#">@item.Title</a></h5>
+					<h5><a href="@Url.Action("Blogcomment", "Home", new { @id = item.ArticleId })">@item.Title</a></h5>
 					<span>@item.PostDate.ToString("dd/MM/yyyy")</span>
 				</div>
 			</div>

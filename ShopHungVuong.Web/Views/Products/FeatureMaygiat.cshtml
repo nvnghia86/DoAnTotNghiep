@@ -1,0 +1,69 @@
+﻿@model ShopHungVuong.Web.Models.ProductModelView
+@{
+	Layout = null;
+}
+
+<div class="product-slider-wrap product-slider-arrow-one">
+	<!-- Product Slider Start -->
+	<div class="product-slider product-slider-4">
+		@if (ViewBag.ListMaygiat != null)
+		{
+
+			foreach (var item in ViewBag.ListMaygiat)
+			{
+				<div class="col pb-20 pt-10">
+					<!-- Product Start -->
+					<div class="ee-product">
+
+						<!-- Image -->
+						<div class="image">
+
+							<a href="@Url.Action("ProductDetail","Products", new { @id = item.Id})" class="img"><img src="~/assets/images/product/@item.MainPhoto1" alt="Product Image"></a>
+
+							<div class="wishlist-compare">
+								<a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
+								<a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
+							</div>
+
+							<a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
+
+						</div>
+
+						<!-- Content -->
+						<div class="content">
+
+							<!-- Category & Title -->
+							<div class="category-title">
+
+								<a href="#" class="cat">@item.ProductGroupName</a>
+								<h5 class="title"><a href="@Url.Action("ProductDetail","Products", new { @id = item.Id})">@item.Name</a></h5>
+
+							</div>
+
+							<!-- Price & Ratting -->
+							<div class="price-ratting">
+
+								<h5 class="price">@item.Price VND</h5>
+								<div class="ratting">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star-half-o"></i>
+								</div>
+							</div>
+
+						</div>
+
+					</div><!-- Product End -->
+				</div>
+			}
+		}
+		else
+		{
+			<div class="col pb-20 pt-10">
+					<p>null</p>
+			</div>
+		}
+	</div><!-- Product Slider End -->
+</div>

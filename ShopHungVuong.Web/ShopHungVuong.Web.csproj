@@ -141,7 +141,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\ArticleGroupsController.cs" />
-    <Compile Include="Controllers\DistrictsController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\GuaranteeProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManufacturersController.cs" />
@@ -156,10 +156,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountModelView.cs" />
     <Compile Include="Models\ArticleGroupModelView.cs" />
     <Compile Include="Models\ArticleModelView.cs" />
     <Compile Include="Models\CartModelView.cs" />
     <Compile Include="Models\Cart\Cart.cs" />
+    <Compile Include="Models\FeedbackModelView.cs" />
     <Compile Include="Models\GuaranteeProductModelView.cs" />
     <Compile Include="Models\LoginView.cs" />
     <Compile Include="Models\ManufacturerModelView.cs" />
@@ -547,6 +549,8 @@
     <Content Include="assets\css\icon-font.min.css" />
     <Content Include="assets\css\plugins.css" />
     <Content Include="assets\css\style.css" />
+    <Content Include="assets\images\article\banner-1.jpg" />
+    <Content Include="assets\images\article\banner-2.jpg" />
     <Content Include="assets\images\article\hung-vuong-su-lua-chon-tot-nhat-cho-sua-chua-tu-lanh.jpg" />
     <Content Include="assets\images\article\sua-dieu-hoa.jpg" />
     <Content Include="assets\images\article\sua-may-giat-tai-nha-khu-vuc-ha-noi.jpg" />
@@ -3743,6 +3747,7 @@
     <Content Include="Views\Admin\Account.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Article\Create.cshtml" />
+    <Content Include="Views\Article\Details.cshtml" />
     <Content Include="Views\Article\Edit.cshtml" />
     <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Web.config">
@@ -3759,7 +3764,7 @@
     <Content Include="Views\Home\AboutUs.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\Blogcomment.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
     <Content Include="Views\Home\Faq.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\MainFooter.cshtml" />
@@ -3799,7 +3804,6 @@
     <Content Include="Views\Products\CreateProduct.cshtml" />
     <Content Include="Views\Products1\Create.cshtml" />
     <Content Include="Views\Products1\Details.cshtml" />
-    <Content Include="Views\Products1\Edit2.cshtml" />
     <Content Include="Views\Products1\Index.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
@@ -3811,11 +3815,20 @@
     <Content Include="Views\Products\MiniCart.cshtml" />
     <Content Include="Views\OrderRepairs\Create.cshtml" />
     <Content Include="Views\OrderRepairs\Delete.cshtml" />
-    <Content Include="Views\OrderRepairs\Details.cshtml" />
     <Content Include="Views\OrderRepairs\Edit.cshtml" />
     <Content Include="Views\OrderRepairs\Index.cshtml" />
     <Content Include="Views\Home\OrderRepair.cshtml" />
     <Content Include="Views\Products1\Edit.cshtml" />
+    <Content Include="Views\Products\FeatureTivi.cshtml" />
+    <Content Include="Views\Products\FeatureDieuhoa.cshtml" />
+    <Content Include="Views\Products\FeatureMaygiat.cshtml" />
+    <Content Include="Views\Products\FeatureTulanh.cshtml" />
+    <Content Include="Views\Products\NewArrival.cshtml" />
+    <Content Include="Views\Home\Account.cshtml" />
+    <Content Include="Views\Article\ArticleTulanh.cshtml" />
+    <Content Include="Views\Article\ArticleDieuhoa.cshtml" />
+    <Content Include="Views\Article\ArticleMaygiat.cshtml" />
+    <Content Include="Views\Article\ArticleTivi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

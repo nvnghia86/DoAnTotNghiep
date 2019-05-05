@@ -29,7 +29,6 @@ namespace ShopHungVuong.Web.Controllers
 
             return rating;
         }
-        
         public ActionResult CreateProduct(ProductModelView model)
         {
             try
@@ -102,6 +101,30 @@ namespace ShopHungVuong.Web.Controllers
 
         public ActionResult ListProduct()
         {
+            List<ProductModelView> listProduct =
+                db.Products.Select(x => new ProductModelView
+                {
+                    Id = x.ProductId,
+                    Name = x.Name,
+                    Description = x.Description,
+                    ImportPrice = x.ImportPrice,
+                    Price = x.Price,
+                    Status = x.Status,
+                    MainPhoto1 = x.MainPhoto1,
+                    SecondaryPhoto1 = x.SecondaryPhoto1,
+                    Amount = x.Amount,
+                    Point = x.Point,
+                    ProductGroupId = x.ProductGroupId,
+                    ProductGroupName = x.ProductGroup.Name,
+                    GuaranteeProductId = x.GuaranteeProductId,
+                    GuaranteeProductTime = x.GuaranteeProduct.Time,
+                    PromotionId = x.PromotionId,
+                    PromotionName = x.Promotion.Name,
+                    PromotionSaleOff = x.Promotion.SaleOff,
+                    ManufacturerId = x.ManufacturerId,
+                    ManufacturerName = x.Manufacturer.Name
+                }).ToList();
+            ViewBag.ProductList = listProduct;
             return View();
         }
 
@@ -173,6 +196,122 @@ namespace ShopHungVuong.Web.Controllers
                     ManufacturerName = x.Manufacturer.Name
                 }).ToList();
             ViewBag.ProductList = listProduct;
+            return View();
+        }
+        public ActionResult FeatureTivi()
+        {
+
+            List<ProductModelView> listProduct =
+                db.Products.Select(x => new ProductModelView
+                {
+                    Id = x.ProductId,
+                    Name = x.Name,
+                    Description = x.Description,
+                    ImportPrice = x.ImportPrice,
+                    Price = x.Price,
+                    Status = x.Status,
+                    MainPhoto1 = x.MainPhoto1,
+                    SecondaryPhoto1 = x.SecondaryPhoto1,
+                    Amount = x.Amount,
+                    Point = x.Point,
+                    ProductGroupId = x.ProductGroupId,
+                    ProductGroupName = x.ProductGroup.Name,
+                    GuaranteeProductId = x.GuaranteeProductId,
+                    GuaranteeProductTime = x.GuaranteeProduct.Time,
+                    PromotionId = x.PromotionId,
+                    PromotionName = x.Promotion.Name,
+                    PromotionSaleOff = x.Promotion.SaleOff,
+                    ManufacturerId = x.ManufacturerId,
+                    ManufacturerName = x.Manufacturer.Name
+                }).Where(x => x.ProductGroupName.ToUpper() == "TIVI").ToList();
+            ViewBag.ListTivi = listProduct;
+            return View();
+        }
+        public ActionResult FeatureTulanh()
+        {
+
+            List<ProductModelView> listProduct =
+                db.Products.Select(x => new ProductModelView
+                {
+                    Id = x.ProductId,
+                    Name = x.Name,
+                    Description = x.Description,
+                    ImportPrice = x.ImportPrice,
+                    Price = x.Price,
+                    Status = x.Status,
+                    MainPhoto1 = x.MainPhoto1,
+                    SecondaryPhoto1 = x.SecondaryPhoto1,
+                    Amount = x.Amount,
+                    Point = x.Point,
+                    ProductGroupId = x.ProductGroupId,
+                    ProductGroupName = x.ProductGroup.Name,
+                    GuaranteeProductId = x.GuaranteeProductId,
+                    GuaranteeProductTime = x.GuaranteeProduct.Time,
+                    PromotionId = x.PromotionId,
+                    PromotionName = x.Promotion.Name,
+                    PromotionSaleOff = x.Promotion.SaleOff,
+                    ManufacturerId = x.ManufacturerId,
+                    ManufacturerName = x.Manufacturer.Name
+                }).Where(x => x.ProductGroupName.ToUpper() == "TỦ LẠNH").ToList();
+            ViewBag.ListTulanh = listProduct;
+            return View();
+        }
+        public ActionResult FeatureMaygiat()
+        {
+
+            List<ProductModelView> listProduct =
+                db.Products.Select(x => new ProductModelView
+                {
+                    Id = x.ProductId,
+                    Name = x.Name,
+                    Description = x.Description,
+                    ImportPrice = x.ImportPrice,
+                    Price = x.Price,
+                    Status = x.Status,
+                    MainPhoto1 = x.MainPhoto1,
+                    SecondaryPhoto1 = x.SecondaryPhoto1,
+                    Amount = x.Amount,
+                    Point = x.Point,
+                    ProductGroupId = x.ProductGroupId,
+                    ProductGroupName = x.ProductGroup.Name,
+                    GuaranteeProductId = x.GuaranteeProductId,
+                    GuaranteeProductTime = x.GuaranteeProduct.Time,
+                    PromotionId = x.PromotionId,
+                    PromotionName = x.Promotion.Name,
+                    PromotionSaleOff = x.Promotion.SaleOff,
+                    ManufacturerId = x.ManufacturerId,
+                    ManufacturerName = x.Manufacturer.Name
+                }).Where(x => x.ProductGroupName.ToUpper() == "MÁY GIẶT").ToList();
+            ViewBag.ListMaygiat = listProduct;
+            return View();
+        }
+        public ActionResult FeatureDieuhoa()
+        {
+
+            List<ProductModelView> listProduct =
+                db.Products.Select(x => new ProductModelView
+                {
+                    Id = x.ProductId,
+                    Name = x.Name,
+                    Description = x.Description,
+                    ImportPrice = x.ImportPrice,
+                    Price = x.Price,
+                    Status = x.Status,
+                    MainPhoto1 = x.MainPhoto1,
+                    SecondaryPhoto1 = x.SecondaryPhoto1,
+                    Amount = x.Amount,
+                    Point = x.Point,
+                    ProductGroupId = x.ProductGroupId,
+                    ProductGroupName = x.ProductGroup.Name,
+                    GuaranteeProductId = x.GuaranteeProductId,
+                    GuaranteeProductTime = x.GuaranteeProduct.Time,
+                    PromotionId = x.PromotionId,
+                    PromotionName = x.Promotion.Name,
+                    PromotionSaleOff = x.Promotion.SaleOff,
+                    ManufacturerId = x.ManufacturerId,
+                    ManufacturerName = x.Manufacturer.Name
+                }).Where(x => x.ProductGroupName.ToUpper() == "ĐIỀU HÒA").ToList();
+            ViewBag.ListDieuhoa = listProduct;
             return View();
         }
         public ActionResult Shopgrid()
@@ -277,10 +416,37 @@ namespace ShopHungVuong.Web.Controllers
                 }).Where(x => x.ProductGroupId == id).ToList();
             ViewBag.ProductList = listProduct;
             return View();
-           
         }
         public ActionResult MiniCart()
         {
+            return View();
+        }
+        public ActionResult NewArrival()
+        {
+            List<ProductModelView> listNewProduct =
+                db.Products.Select(x => new ProductModelView
+                {
+                    Id = x.ProductId,
+                    Name = x.Name,
+                    Description = x.Description,
+                    ImportPrice = x.ImportPrice,
+                    Price = x.Price,
+                    Status = x.Status,
+                    MainPhoto1 = x.MainPhoto1,
+                    Amount = x.Amount,
+                    Point = x.Point,
+                    ProductGroupId = x.ProductGroupId,
+                    ProductGroupName = x.ProductGroup.Name,
+                    GuaranteeProductId = x.GuaranteeProductId,
+                    GuaranteeProductTime = x.GuaranteeProduct.Time,
+                    PromotionId = x.PromotionId,
+                    PromotionName = x.Promotion.Name,
+                    PromotionSaleOff = x.Promotion.SaleOff,
+                    ManufacturerId = x.ManufacturerId,
+                    ManufacturerName = x.Manufacturer.Name,
+                    CreatedDate = x.CreatedDate
+                }).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+            ViewBag.NewProductList = listNewProduct;
             return View();
         }
     }

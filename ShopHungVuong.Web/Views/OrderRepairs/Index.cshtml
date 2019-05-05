@@ -1,62 +1,109 @@
 ﻿@model IEnumerable<DataAccess.Models.OrderRepair>
 
 @{
-    ViewBag.Title = "Quản lý đặt lịch";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewBag.Title = "Quản lý đặt lịch";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <h2>Danh sách đặt lịch</h2>
 
 
 <table class="table">
-    <tr>
-        <th>
-            Khách hàng
-        </th>
-        <th>
-            Số điện thoại
-        </th>
-        <th>
-            Địa chỉ
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Ngày yêu cầu sửa chữa
-        </th>
-        <th>
-            Nội dung yêu cầu
-        </th>
-        <th></th>
-    </tr>
+	<tr>
+		<th>
+			Khách hàng
+		</th>
+		<th>
+			Số điện thoại
+		</th>
+		<th>
+			Địa chỉ
+		</th>
+		<th>
+			Email
+		</th>
+		<th>
+			Ngày yêu cầu sửa chữa
+		</th>
+		<th>
+			Nội dung yêu cầu
+		</th>
+		<th>
+			Thiết bị và tình trạng
+		</th>
+		<th></th>
+	</tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CustomerEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderRepairId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderRepairId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderRepairId })
-        </td>
-    </tr>
-}
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.CustomerName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.PhoneNumber)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CustomerAddress)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CustomerEmail)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.OrderDate)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Content)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Device)
+			</td>
+			<td>
+				@Html.ActionLink("Edit", "Edit", new { id = item.OrderRepairId }) |
+				<a href="#" onclick="ConfirmDelete(@item.OrderRepairId)">Xóa </a>
+			</td>
+		</tr>
+	}
 
 </table>
+<div class="modal fade" id="myModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="close" data-dismiss="modal">&times;</a>
+				<h3 class="modal-title">Xóa đặt lịch</h3>
+			</div>
+			<div class="modal-body">
+				<h4>Bạn có chắc muốn xóa đặt lịch này </h4>
+				<div style="text-align:center;display:none" id="loaderDiv">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn btn-default" data-dismiss="modal">Thoát</a>
+				<a href="#" class="btn btn-success" onclick="Delete()">Xác nhận</a>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="hiddenId" />
+</div>
+
+<script>
+	var ConfirmDelete = function (Id) {
+		$("#hiddenId").val(Id);
+		$("#myModal").modal('show');
+	}
+	var Delete = function () {
+		$("#loaderDiv").show();
+		var orderId = $("#hiddenId").val();
+		$.ajax({
+			type: "POST",
+			url: "/OrderRepairs/Delete",
+			data: { Id: orderId },
+			success: function (result) {
+				$("#loaderDiv").hide();
+				$("#myModal").modal("hide");
+				$("#row_" + orderId).remove();
+			}
+		})
+	}
+</script>

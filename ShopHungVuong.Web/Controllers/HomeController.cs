@@ -60,51 +60,13 @@ namespace ShopHungVuong.Web.Controllers
         {
             return View();
         }
-        public ActionResult Blog(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Blog()
         {
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
-            var article = from s in db.Articles
-                          select s;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                article = article.Where(s => s.Title.Contains(searchString)
-                                       || s.Detail.Contains(searchString));
-            }
-            switch (sortOrder)
-            {
-                case "name_desc":
-                    article = article.OrderByDescending(s => s.Title);
-                    break;
-                case "Date":
-                    article = article.OrderBy(s => s.PostDate);
-                    break;
-                default:  // Name ascending 
-                    article = article.OrderBy(s => s.PostDate);
-                    break;
-            }
-
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            return View(article.ToPagedList(pageNumber, pageSize));
-        }
-        public ActionResult Contact()
-        {
+            List<ArticleModelView> listArticle = db.Articles.Select(x => new ArticleModelView { ArticleId = x.ArticleId, ArticleGroupId = x.ArticleGroupId, Author = x.Author, Detail = x.Detail, Photo = x.Photo, PostDate = x.PostDate, Sumary = x.Sumary, Title = x.Title, ArticleGroupName = x.ArticleGroup.Name }).OrderByDescending(x => x.PostDate).ToList();
+            ViewBag.ArticleList = listArticle;
             return View();
         }
+        
         public ActionResult Faq()
         {
             return View();
@@ -168,27 +130,31 @@ namespace ShopHungVuong.Web.Controllers
             ViewBag.HeroBanner = listProduct;
             return View();
         }
-        public void SendEmail(string email)
+        
+        public ActionResult MainFooter()
+        {
+            return View();
+        }
+        public void SendEmail(string email, string userName, string password)
         {
 
             try
             {
-
                 StringBuilder Body = new StringBuilder();
-                Body.Append("<p>Hi pro: </ p > ");
+                Body.Append("<p>Kính chào quí khách </ p > ");
                 Body.Append("<table>");
-                Body.Append("<tr><td colspan='2'><h4>Notification :</h4></td></tr>");
-                Body.Append("<tr><td>Admin </td></tr>");
-                Body.Append("<tr><td>YourTask has been updated </td></tr>");
-                Body.Append("<tr><td>Please check again</td></tr>");
-                Body.Append("<tr><td>Please feel free to contact <b> sondh@smartosc.com<b> in case you remain any questions.</td></tr>");
-                Body.Append("<tr><td>Thank you for watching our newsletter </td></tr>");
+                Body.Append("<tr><td colspan='2'><h4>Bạn đã đặt lịch thành công :</h4></td></tr>");
+                Body.Append("<tr><td>Tài khoản của bạn đã được tạo tự động </td></tr>");
+                Body.Append("<tr><td>Tài khoản của bạn là: "+ userName + " </td></tr>");
+                Body.Append("<tr><td>Mật khẩu là: " + password + "</td></tr>");
+                Body.Append("<tr><td></td></tr>");
+                Body.Append("<tr><td>Cảm ơn bạn đã tin tưởng sử dụng dịch vụ của chúng tôi.</td></tr>");
                 Body.Append("</table>");
 
                 MailMessage mail = new MailMessage();
                 mail.To.Add(email);
                 mail.From = new MailAddress("nghiakho97@gmail.com");
-                mail.Subject = "Updating Task";
+                mail.Subject = "Đặt lịch thành công !!";
                 mail.Body = Body.ToString();
                 mail.IsBodyHtml = true;
                 SmtpClient smtp = new SmtpClient();
@@ -206,11 +172,39 @@ namespace ShopHungVuong.Web.Controllers
             }
 
         }
-        public ActionResult MainFooter()
+        public void SendEmailUser(string email)
         {
-            return View();
-        }
 
+            try
+            {
+                StringBuilder Body = new StringBuilder();
+                Body.Append("<p>Kính chào quí khách </ p > ");
+                Body.Append("<table>");
+                Body.Append("<tr><td colspan='2'><h4>Bạn đã đặt lịch thành công :</h4></td></tr>");
+                Body.Append("<tr><td></td></tr>");
+                Body.Append("<tr><td>Cảm ơn bạn đã tin tưởng sử dụng dịch vụ của chúng tôi.</td></tr>");
+                Body.Append("</table>");
+                MailMessage mail = new MailMessage();
+                mail.To.Add(email);
+                mail.From = new MailAddress("nghiakho97@gmail.com");
+                mail.Subject = "Đặt lịch thành công !!";
+                mail.Body = Body.ToString();
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential("nghiakho97@gmail.com", "nguyenvannghia");
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Exception in sendEmail:" + ex.Message);
+            }
+
+        }
         //POST: OrderRepairs/Create
         //To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -221,25 +215,69 @@ namespace ShopHungVuong.Web.Controllers
         [HttpPost]
         public ActionResult MainHeader(OrderRepairModelView model)
         {
-            try
+            if(Session["userID"] == null)
             {
-                OrderRepair orderRepair = new OrderRepair
+                try
                 {
-                    Content = model.Content,
-                    CustomerAddress = model.CustomerAddress,
-                    CustomerEmail = model.CustomerEmail,
-                    CustomerName = model.CustomerName,
-                    OrderDate = model.OrderDate,
-                    OrderRepairId = model.OrderRepairId,
-                    PhoneNumber = model.PhoneNumber
-                };
-                db.OrderRepairs.Add(orderRepair);
-                db.SaveChanges();
-                return View(model);
+                    User user = new User
+                    {
+                        RoleId = 3,
+                        Username = model.PhoneNumber,
+                        Password = "123456",
+                        FirstName = model.CustomerName,
+                        LastName = model.CustomerName,
+                        Address = model.CustomerAddress,
+                        Email = model.CustomerEmail,
+                        Phone = Int32.Parse(model.PhoneNumber),
+                        CreateDate = DateTime.Now.ToString("dd-MM-yyyy"),
+                        IsActive = true
+                    };
+                    db.Users.Add(user);
+                    OrderRepair orderRepair = new OrderRepair
+                    {
+                        Content = model.Content,
+                        CustomerAddress = model.CustomerAddress,
+                        CustomerEmail = model.CustomerEmail,
+                        CustomerName = model.CustomerName,
+                        Device = model.Device,
+                        OrderDate = model.OrderDate,
+                        OrderRepairId = model.OrderRepairId,
+                        PhoneNumber = model.PhoneNumber
+                    };
+                    db.OrderRepairs.Add(orderRepair);
+                    db.SaveChanges();
+                    SendEmail(model.CustomerEmail, model.PhoneNumber, "123456");
+                    return View(model);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
-            catch(Exception ex)
+            else
             {
-                throw ex;
+                try
+                {
+                    OrderRepair orderRepair = new OrderRepair
+                    {
+                        Content = model.Content,
+                        CustomerAddress = model.CustomerAddress,
+                        CustomerEmail = model.CustomerEmail,
+                        CustomerName = model.CustomerName,
+                        Device = model.Device,
+                        OrderDate = model.OrderDate,
+                        OrderRepairId = model.OrderRepairId,
+                        PhoneNumber = model.PhoneNumber
+                    };
+                    db.OrderRepairs.Add(orderRepair);
+                    db.SaveChanges();
+                    SendEmailUser(model.CustomerEmail);
+                    return View(model);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
             }
         }
         public ActionResult AddOrderRepair()
@@ -307,6 +345,10 @@ namespace ShopHungVuong.Web.Controllers
                     }
                 }
             }
+        }
+        public ActionResult Account()
+        {
+            return View();
         }
         protected override void Dispose(bool disposing)
         {

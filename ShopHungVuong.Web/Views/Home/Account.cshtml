@@ -1,0 +1,26 @@
+﻿
+@{
+	Layout = null;
+}
+@if (Session["userID"] == null)
+{
+	<div class="header-account-links">
+		<a href=""><i class="icofont icofont-user-alt-7"></i> <span>Tài khoản</span></a>
+		<a href="@Url.Action("Login", "Home")"><i class="icofont icofont-login d-none"></i> <span>Đăng nhập</span></a>
+	</div>
+}
+else if(Session["role"].ToString() == "1")
+{
+	<div class="header-account-links">
+		<a href="@Url.Action("Index", "Admin")"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+		<a href="@Url.Action("LogOut", "Admin")"><i class="icofont icofont-login d-none"></i> <span>Đăng xuất</span></a>
+	</div>
+}
+else
+{
+	<div class="header-account-links">
+		<a href=""><i class="icofont icofont-user-alt-7"></i> <span>@Session["lastName"].ToString()</span></a>
+		<a href="@Url.Action("LogOut", "Admin")"><i class="icofont icofont-login d-none"></i> <span>Đăng xuất</span></a>
+	</div>
+}
+

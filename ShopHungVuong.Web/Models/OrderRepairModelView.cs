@@ -22,5 +22,7 @@ namespace ShopHungVuong.Web.Models
         public DateTime OrderDate { get; set; }
         [Required]
         public string Content { get; set; }
+        [Required]
+        public string Device { get; set; }
     }
 }

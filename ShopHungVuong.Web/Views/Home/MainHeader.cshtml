@@ -4,7 +4,6 @@
 }
 
 <div class="header-section section">
-
 	<!-- Header Top Start -->
 	<div class="header-top header-top-one header-top-border pt-10 pb-10">
 		<div class="container">
@@ -14,7 +13,7 @@
 					<!-- Header Links Start -->
 					<div class="header-links">
 						<a href="@Url.Action("Cart","Cart")"><img src="~/assets/images/icons/car.png" alt="Car Icon"> <span>Kiểm tra đơn hàng</span></a>
-						<a href="@Url.Action("Contact","Home")"><img src="~/assets/images/icons/marker.png" alt="Car Icon"> <span>Danh sách cửa hàng</span></a>
+						<a href="@Url.Action("Index","ContactUs")"><img src="~/assets/images/icons/marker.png" alt="Car Icon"> <span>Danh sách cửa hàng</span></a>
 					</div><!-- Header Links End -->
 				</div>
 				<div class="col order-12 order-xs-12 order-lg-2 mt-10 mb-10">
@@ -41,10 +40,8 @@
 
 				<div class="col order-2 order-xs-2 order-lg-12 mt-10 mb-10">
 					<!-- Header Account Links Start -->
-					<div class="header-account-links">
-						<a href=""><i class="icofont icofont-user-alt-7"></i> <span>Tài khoản</span></a>
-						<a href="@Url.Action("Login", "Home")"><i class="icofont icofont-login d-none"></i> <span>Đăng nhập</span></a>
-					</div><!-- Header Account Links End -->
+					
+					@Html.Action("Account", "Home")
 				</div>
 
 			</div>
@@ -103,8 +100,8 @@
 										<li><a href="@Url.Action("Blog", "Home")">Sửa tủ lạnh tại nhà</a></li>
 									</ul>
 								</li>
-								<li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
-								<li><a href="" onclick="openForm()">Đặt lịch</a></li>
+								<li><a href="@Url.Action("Index", "ContactUs")">Liên hệ</a></li>
+								<li><a href="" data-toggle="modal" data-target="#myModal">Đặt lịch</a></li>
 							</ul>
 						</nav>
 					</div><!-- Main Menu End -->
@@ -166,65 +163,147 @@
 </div>
 
 <!-- Popup Subscribe Section Start -->
-<div class="popup-subscribe-section section bg-gray pt-55 pb-55" data-modal="popup-modal" id="myModal">
-
-	<!-- Popup Subscribe Wrap Start -->
-	<div class="popup-subscribe-wrap">
-		<button class="close-popup">X</button>
-		@using (Html.BeginForm())
-		{
-			@Html.AntiForgeryToken()
-			<!-- Popup Subscribe Banner -->
-			<form id="myForm">
-				<div class="popup-subscribe-banner banner ">
-					<br />
-					<div class="col-12 mb-30">
-						@Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Họ tên" } })
-						@Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
-					</div>
-					<div class="col-12 mb-20">
-						@Html.EditorFor(model => model.CustomerAddress, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Địa chỉ" } })
-						@Html.ValidationMessageFor(model => model.CustomerAddress, "", new { @class = "text-danger" })
-					</div>
-					<div class="col-12 mb-20">
-						@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Yêu cầu sửa chữa" } })
-						@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-					</div>
-					<div class="col-12 mb-20">
-						@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Số điện thoại" } })
-						@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-					</div>
-					<div class="col-12 mb-20">
-						Ngày sửa chữa: <input type="date" name="OrderDate" id="OrderDate" class="subscribe-form" value="" />
-					</div>
-				</div>
-
-				<!-- Popup Subscribe Form Wrap Start -->
-				<div class="popup-subscribe-form-wrap">
-
-					<h1>Đặt lịch <br>sửa chữa tại nhà</h1>
+<div class="modal fade section bg-gray" id="myModal" role="dialog">
+	<div class="modal-dialog modal-lg " >
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body" style="background-image:url(../../assets/images/about/feature-image.jpg)">
+				@using (Html.BeginForm())
+				{
+					@Html.AntiForgeryToken()
+					<!-- Popup Subscribe Banner -->
+				<form id="myForm">
+					<h1>Đặt lịch sửa chữa tại nhà</h1>
 					<!-- Newsletter Form -->
 					<label for="popup_subscribe" class="d-none">Đặt lịch sửa chữa</label>
-					<div class="col-12 mb-20">
-						@Html.EditorFor(m => m.CustomerEmail, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Số điện thoại" } })
-						@Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
-					</div>
-					<div class="col-12 mb-20">
-						<button type="submit" id="btnPost">Đặt lịch</button>
-						@*<a href="#" class="btn btn-success" id="btnSubmit">Đặt lịch</a>*@
-						@*<input type="submit" class="Button" style="border: 1px solid #d0d0d0;border-radius: 50px;" value="Đặt lịch">*@
-					</div>
-					<p>Nhân viên tư vấn dịch vụ sẽ liên hệ với quý khách để trao đổi, cám ơn quí khách</p>
+					<div class="row">
+						<br />
+						<div class="col-6 mb-30">
+							@Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Họ tên" } })
+							@Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+						</div>
+						<div class="col-6 mb-20">
+							@Html.EditorFor(model => model.CustomerAddress, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Địa chỉ" } })
+							@Html.ValidationMessageFor(model => model.CustomerAddress, "", new { @class = "text-danger" })
+						</div>
+						<div class="col-6 mb-20">
+							@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Yêu cầu sửa chữa" } })
+							@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+						</div>
+						<div class="col-6 mb-20">
+							@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Số điện thoại" } })
+							@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+						</div>
+						<div class="col-6 mb-20">
+							@Html.EditorFor(model => model.Device, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Thiết bị và tình trạng" } })
+							@Html.ValidationMessageFor(model => model.Device, "", new { @class = "text-danger" })
+						</div>
+						<div class="col-6 mb-20">
+							<div class="row">
+								<div class="col-6">Ngày sửa chữa: </div>
+								<div class="col-6"><input type="date" name="OrderDate" id="OrderDate" style="border: 1px solid #d0d0d0;border-radius: 50px;" value="" /></div>
+							</div>
+						</div>
+						<div class="col-6 mb-20">
+							@Html.EditorFor(m => m.CustomerEmail, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Email" } })
+							@Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
+						</div>
 
-				</div><!-- Popup Subscribe Form Wrap End -->
-			</form>
-		}
-	</div><!-- Popup Subscribe Wrap End -->
 
+						<!-- Popup Subscribe Form Wrap Start -->
+
+
+						<div class="col-6 mb-20">
+
+						</div>
+						<div class="col-6 mb-20" style="text-align:center">
+							<button type="submit" style="border: 1px solid #d0d0d0;border-radius: 50px; " id="btnPost">Đặt lịch</button>
+							@*<a href="#" class="btn btn-success" style="border: 1px solid #d0d0d0;border-radius: 50px; " id="btnSubmit">Đặt lịch</a>*@
+							@*<input type="submit" class="Button" style="border: 1px solid #d0d0d0;border-radius: 50px;" value="Đặt lịch">*@
+						</div>
+						<div class="col-6">
+							<p>Nhân viên tư vấn dịch vụ sẽ liên hệ với quý khách để trao đổi, cám ơn quí khách</p>
+						</div>
+					</div>
+					<!-- Popup Subscribe Form Wrap End -->
+				</form>
+				}
+				</div>
+		
+		</div>
+
+	</div>
 </div>
+@*<div class="modal fade" id="myModal" >
+	<div class="modal-dialog">
+		<div class="popup-subscribe-section section bg-gray pt-55 pb-55" data-modal="popup-modal" id="myModal">
+			<!-- Popup Subscribe Wrap Start -->
+			<div class="popup-subscribe-wrap">
+				<button class="close-popup">X</button>
+				@using (Html.BeginForm())
+				{
+					@Html.AntiForgeryToken()
+					<!-- Popup Subscribe Banner -->
+					<form id="myForm">
+						<div class="popup-subscribe-banner banner ">
+							<br />
+							<div class="col-12 mb-30">
+								@Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Họ tên" } })
+								@Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+							</div>
+							<div class="col-12 mb-20">
+								@Html.EditorFor(model => model.CustomerAddress, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Địa chỉ" } })
+								@Html.ValidationMessageFor(model => model.CustomerAddress, "", new { @class = "text-danger" })
+							</div>
+							<div class="col-12 mb-20">
+								@Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Yêu cầu sửa chữa" } })
+								@Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+							</div>
+							<div class="col-12 mb-20">
+								@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Số điện thoại" } })
+								@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+							</div>
+							<div class="col-12 mb-20">
+								@Html.EditorFor(model => model.Device, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Thiết bị và tình trạng" } })
+								@Html.ValidationMessageFor(model => model.Device, "", new { @class = "text-danger" })
+							</div>
+							<div class="col-12 mb-20">
+								Ngày sửa chữa: <input type="date" name="OrderDate" id="OrderDate" class="subscribe-form" value="" />
+							</div>
+						</div>
+
+						<!-- Popup Subscribe Form Wrap Start -->
+						<div class="popup-subscribe-form-wrap">
+
+							<h1>Đặt lịch <br>sửa chữa tại nhà</h1>
+							<!-- Newsletter Form -->
+							<label for="popup_subscribe" class="d-none">Đặt lịch sửa chữa</label>
+							<div class="col-12 mb-20">
+								@Html.EditorFor(m => m.CustomerEmail, new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Email" } })
+								@Html.ValidationMessageFor(model => model.CustomerEmail, "", new { @class = "text-danger" })
+							</div>
+							<div class="col-12 mb-20">
+								<button type="submit" id="btnPost">Đặt lịch</button>
+								<a href="#" class="btn btn-success" id="btnSubmit">Đặt lịch</a>
+								<input type="submit" class="Button" style="border: 1px solid #d0d0d0;border-radius: 50px;" value="Đặt lịch">
+							</div>
+							<p>Nhân viên tư vấn dịch vụ sẽ liên hệ với quý khách để trao đổi, cám ơn quí khách</p>
+
+						</div><!-- Popup Subscribe Form Wrap End -->
+					</form>
+				}
+			</div><!-- Popup Subscribe Wrap End -->
+
+		</div>
+
+	</div>
+</div>*@
 <!-- Popup Subscribe Section End -->
-<script>
+@*<script>
 	function openForm() {
 		document.getElementById("myModal").style.display = "block";
 	}
-</script>
+</script>*@

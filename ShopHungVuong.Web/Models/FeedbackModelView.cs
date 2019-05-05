@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace DataAccess.Models
+namespace ShopHungVuong.Web.Models
 {
-    public class Feedback
+    public class FeedbackModelView
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), ScaffoldColumn(false)]
         public int FeedbackId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

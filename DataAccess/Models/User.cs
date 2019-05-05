@@ -19,9 +19,9 @@ namespace DataAccess.Models
         public string Address { get; set; }
         public string Email { get; set; }
         public int Phone { get; set; }
-        public DateTime Birthday { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public string Birthday { get; set; }
+        public string CreateDate { get; set; }
+        public string ModifiedDate { get; set; }
         public string Avatar { get; set; }
         public string Status { get; set; }
         public bool IsActive { get; set; }
@@ -29,7 +29,6 @@ namespace DataAccess.Models
         [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }
         //public virtual ICollection<Role> Roles { get; set; }
-        public virtual ICollection<Feedback> Feedbacks { get; set; }
         public virtual ICollection<ProductWarrantyCard> ProductWarrantyCards { get; set; }
 
 

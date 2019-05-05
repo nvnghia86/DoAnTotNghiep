@@ -1,0 +1,43 @@
+﻿@model DataAccess.Models.Article
+@{
+	Layout = null;
+}
+<div class="row">
+
+	@if (ViewBag.ArticleList != null)
+	{
+		foreach (var item in ViewBag.ArticleList)
+		{
+			<!-- Blog Item -->
+			<div class="col-12 mb-40">
+				<div class="ee-blog">
+					<a href="@Url.Action("Blogcomment", "Home", new { @id = item.ArticleId })" class="image"><img src="~/assets/images/article/@item.Photo" alt="Blog Image"></a>
+					<div class="content">
+						<h3><a href="@Url.Action("Blogcomment", "Home", new { @id = item.ArticleId })">@item.Title</a></h3>
+						<ul class="meta">
+							<li><a href="#">@item.Author</a></li>
+							<li><a href="#">@item.PostDate.ToString("dd/MM/yyyy")</a></li>
+							<li><a href="#">Comments 05</a></li>
+						</ul>
+						<p>@item.Sumary</p>
+					</div>
+				</div>
+			</div>
+		}
+		<div class="blog-sidebar mb-40">
+
+			<h4 class="title">Tags</h4>
+
+			<div class="tags-cloud">
+				<a href="#">hitachi</a>
+				<a href="#">tủ lạnh</a>
+				<a href="#">side by side</a>
+				<a href="#">50 inch</a>
+				<a href="#">Play Station</a>
+				<a href="#">Full HD 4K</a>
+			</div>
+
+		</div>
+	}
+</div>
+

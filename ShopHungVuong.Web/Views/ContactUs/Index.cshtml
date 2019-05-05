@@ -1,4 +1,4 @@
-﻿
+﻿@model ShopHungVuong.Web.Models.FeedbackModelView
 @{
 	ViewBag.Title = "Contact";
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -93,24 +93,24 @@
 							<form id="contact-form" action="" method="post" class="contact-form mb-50">
 								<div class="row">
 									<div class="col-md-6 col-12 mb-25">
-										<label for="first_name">Họ, tên đệm*</label>
-										<input id="first_name" type="text" name="first_name">
+										<label for="FirstName">Họ, tên đệm*</label>
+										<input id="FirstName" type="text" name="FirstName">
 									</div>
 									<div class="col-md-6 col-12 mb-25">
-										<label for="last_name">Tên*</label>
-										<input id="last_name" type="text" name="last_name">
+										<label for="LastName">Tên*</label>
+										<input id="LastName" type="text" name="LastName">
 									</div>
 									<div class="col-md-6 col-12 mb-25">
-										<label for="email_address">Email*</label>
-										<input id="email_address" type="email" name="email_address">
+										<label for="Email">Email*</label>
+										<input id="Email" type="email" name="Email">
 									</div>
 									<div class="col-md-6 col-12 mb-25">
-										<label for="phone_number">Điện thoại</label>
-										<input id="phone_number" type="text" name="phone_number">
+										<label for="Phone">Điện thoại</label>
+										<input id="Phone" type="text" name="Phone">
 									</div>
 									<div class="col-12 mb-25">
-										<label for="message">Tin nhắn*</label>
-										<textarea id="message" name="message"></textarea>
+										<label for="Content">Tin nhắn*</label>
+										<textarea id="Content" name="Content"></textarea>
 									</div>
 									<div class="col-12">
 										<input type="submit" value="Gửi tin nhắn">

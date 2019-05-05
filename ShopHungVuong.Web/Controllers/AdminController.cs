@@ -15,7 +15,7 @@ namespace ShopHungVuong.Web.Controllers
         {
             if (Session["userID"] == null)
             {
-                return RedirectToAction("Login", "Backend");
+                return RedirectToAction("Login", "Home");
             }
             return View();
         }

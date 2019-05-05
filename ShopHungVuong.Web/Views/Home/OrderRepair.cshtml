@@ -32,6 +32,10 @@
 						@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
 					</div>
 					<div class="col-12 mb-20">
+						@Html.EditorFor(model => model., new { htmlAttributes = new { @class = "subscribe-form", @style = "padding-right:10px", @placeholder = "Số điện thoại" } })
+						@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+					</div>
+					<div class="col-12 mb-20">
 						Ngày sửa chữa: <input type="date" name="OrderDate" id="OrderDate" class="subscribe-form" value="" />
 					</div>
 				</div>

@@ -1,6 +1,6 @@
 ﻿@using PagedList;
 @using PagedList.Mvc;
-@model PagedList.IPagedList<DataAccess.Models.Article>
+@model DataAccess.Models.Article
 
 @{
 	ViewBag.Title = "Blog";
@@ -40,15 +40,63 @@
 </div><!-- Page Banner Section End -->
 <!-- Blog Section Start -->
 <div class="blog-section section mt-90 mb-50">
-	<div class="container">
-		<div class="row row-40">
+	<div class="tab-content">
+		<div class="row row-40 ">
 
-			<div class="col-lg-8 col-12 order-1 order-lg-2 mb-40">
+			<div class="col-lg-8 col-12 order-1 order-lg-2 mb-40 tab-content" >
+				<div class="tab-pane row fade show active" id="tab-one">
 
-				@Html.Action("ListArticle", "Article")
-				
+					@if (ViewBag.ArticleList != null)
+					{
+						foreach (var item in ViewBag.ArticleList)
+						{
+							<!-- Blog Item -->
+							<div class="col-12 mb-40">
+								<div class="ee-blog">
+									<a href="@Url.Action("Blogcomment", "Home", new { @id = item.ArticleId })" class="image"><img src="~/assets/images/article/@item.Photo" alt="Blog Image"></a>
+									<div class="content">
+										<h3><a href="@Url.Action("Blogcomment", "Home", new { @id = item.ArticleId })">@item.Title</a></h3>
+										<ul class="meta">
+											<li><a href="#">@item.Author</a></li>
+											<li><a href="#">@item.PostDate.ToString("dd/MM/yyyy")</a></li>
+											<li><a href="#">Comments 05</a></li>
+										</ul>
+										<p>@item.Sumary</p>
+									</div>
+								</div>
+							</div>
+						}
+						<div class="blog-sidebar mb-40">
 
+							<h4 class="title">Tags</h4>
+
+							<div class="tags-cloud">
+								<a href="#">hitachi</a>
+								<a href="#">tủ lạnh</a>
+								<a href="#">side by side</a>
+								<a href="#">50 inch</a>
+								<a href="#">Play Station</a>
+								<a href="#">Full HD 4K</a>
+							</div>
+
+						</div>
+					}
+
+				</div>
+				<div class="tab-pane row fade" id="tab-two">
+					@Html.Action("ArticleTivi", "Article")
+				</div>
+				<div class="tab-pane row fade" id="tab-three">
+					@Html.Action("ArticleTulanh", "Article")
+				</div>
+				<div class="tab-pane row fade" id="tab-four">
+					@Html.Action("ArticleDieuhoa", "Article")
+				</div>
+				<div class="tab-pane row fade" id="tab-five">
+					@Html.Action("ArticleMaygiat", "Article")
+				</div>
 			</div>
+			
 
 			<div class="col-lg-4 col-12 order-2 order-lg-1">
 
@@ -56,17 +104,12 @@
 				<div class="blog-sidebar mb-40">
 
 					<h4 class="title">Chuyên mục</h4>
-
 					<ul>
-						<li><a href="#" id="tivi">Tivi</a></li>
-						<li><a href="#">Tủ lạnh</a></li>
-						<li><a href="#">Điều hòa</a></li>
-						<li><a href="#">Máy giặt</a></li>
-						<li><a href="#">Thiết bị điện lạnh</a></li>
-						<li><a href="#">Thiết bị điện tử</a></li>
-						<li><a href="#">Thiết bị điện nhà bếp</a></li>
-						<li><a href="#">Thủ thuật</a></li>
-						<li><a href="#">Mẹo hay</a></li>
+						<li><a class="active" data-toggle="tab" href="#tab-one">Tất cả bài viết</a></li>
+						<li><a data-toggle="tab" href="#tab-two">TIVI</a></li>
+						<li><a data-toggle="tab" href="#tab-three">Tủ lạnh</a></li>
+						<li><a data-toggle="tab" href="#tab-four">Điều hòa</a></li>
+						<li><a data-toggle="tab" href="#tab-five">Máy giặt</a></li>
 					</ul>
 
 				</div>
